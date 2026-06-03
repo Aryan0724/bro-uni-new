@@ -56,9 +56,7 @@ export default function Home() {
     window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
   };
 
-  const handleJoin = () => {
-    document.getElementById("join")?.scrollIntoView({ behavior: "smooth" });
-  };
+
 
   return (
     <main className="relative min-h-screen text-white select-none bg-black font-sans w-full">

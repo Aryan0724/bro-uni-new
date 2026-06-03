@@ -63,7 +63,7 @@ export function BroCharacter({ progress }: { progress: MotionValue<number> }) {
 
     // --- CINEMATIC CAMERA & POSITION CHOREOGRAPHY ---
     let targetX = 0;
-    let targetY = -1; // Keep it centered vertically
+    const targetY = -1; // Keep it centered vertically
     let targetZ = 0;
     let targetRotY = 0;
 

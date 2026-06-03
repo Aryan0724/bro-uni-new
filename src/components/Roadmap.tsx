@@ -10,7 +10,7 @@ const phases = [
   { year: "Phase 4", title: "Unified Ecosystem", desc: "A multi-disciplinary technology ecosystem bridging mind, software, and silicon." },
 ];
 
-function AnimatedPhase({ p, index }: { p: { year: string, title: string, desc: string }; index: number }) {
+function AnimatedPhase({ p }: { p: { year: string, title: string, desc: string } }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -98,7 +98,7 @@ export default function Roadmap() {
         {/* Right Side: Timeline Steps */}
         <div className="flex-1 flex flex-col gap-8 pt-12 md:pt-0">
           {phases.map((p, i) => (
-            <AnimatedPhase key={i} p={p} index={i} />
+            <AnimatedPhase key={i} p={p} />
           ))}
         </div>
 

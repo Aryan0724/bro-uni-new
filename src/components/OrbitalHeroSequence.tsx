@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Brain, Cpu, Database, Network, Zap } from "lucide-react";
+import { Brain, Database, Network, Zap } from "lucide-react";
 
 export default function OrbitalHeroSequence({ onExplore }: { onExplore: () => void }) {
   return (

@@ -274,7 +274,7 @@ export default function Problem() {
                 const isHighlight = word.includes("intelligence");
                 return (
                   <span key={wIdx} className="inline-block whitespace-nowrap mr-[0.25em]">
-                    {word.split("").map((letter, lIdx) => {
+                    {word.split("").map((letter) => {
                       const currentIndex = globalLetterTracker++;
                       return (
                         <SuckedLetter 

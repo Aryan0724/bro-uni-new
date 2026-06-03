@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useEffect } from "react";
-import { useScroll, motion, useTransform, useMotionValue } from "framer-motion";
+import { motion, useTransform, useMotionValue } from "framer-motion";
 import { Canvas } from "@react-three/fiber";
 import { Environment, Sparkles } from "@react-three/drei";
 import { BroCharacter } from "./BroCharacter";

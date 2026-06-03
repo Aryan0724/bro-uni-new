@@ -11,7 +11,7 @@ const rows = [
   { icon: Globe, title: "Global Network", desc: "Fabs in Taiwan. Labs in Switzerland." },
 ];
 
-function AnimatedCard({ r, index }: { r: { icon: React.ElementType, title: string, desc: string }; index: number }) {
+function AnimatedCard({ r }: { r: { icon: React.ElementType, title: string, desc: string } }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -70,7 +70,7 @@ export default function WhyBro() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl" style={{ perspective: "1500px" }}>
         {rows.map((r, i) => (
-          <AnimatedCard key={i} r={r} index={i} />
+          <AnimatedCard key={i} r={r} />
         ))}
       </div>
 
