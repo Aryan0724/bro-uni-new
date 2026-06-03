@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Microscope, Zap, Factory, Globe } from "lucide-react";
+import { Microscope, Zap, Factory, Globe, LucideIcon } from "lucide-react";
 
 const rows = [
   { icon: Microscope, title: "Research First", desc: "Labs run the curriculum — not administrators." },
@@ -11,7 +11,7 @@ const rows = [
   { icon: Globe, title: "Global Network", desc: "Fabs in Taiwan. Labs in Switzerland." },
 ];
 
-function AnimatedCard({ r }: { r: { icon: React.ElementType, title: string, desc: string } }) {
+function AnimatedCard({ r }: { r: { icon: LucideIcon, title: string, desc: string } }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
