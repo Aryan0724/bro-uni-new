@@ -91,7 +91,7 @@ export default function OrbitalHeroSequence({ onExplore }: { onExplore: () => vo
           onClick={onExplore}
           className="bg-[var(--nvg-yellow)] text-black border-[4px] border-black shadow-[6px_6px_0_0_#000] rounded-full px-12 py-5 font-black text-xl uppercase tracking-wider hover:-translate-y-1 hover:shadow-[10px_10px_0_0_#000] transition-all"
         >
-          Let's talk
+          Let&apos;s talk
         </button>
 
       </div>

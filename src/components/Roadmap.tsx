@@ -10,7 +10,7 @@ const phases = [
   { year: "Phase 4", title: "Unified Ecosystem", desc: "A multi-disciplinary technology ecosystem bridging mind, software, and silicon." },
 ];
 
-function AnimatedPhase({ p, index }: { p: any; index: number }) {
+function AnimatedPhase({ p, index }: { p: { year: string, title: string, desc: string }; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,

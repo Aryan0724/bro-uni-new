@@ -11,7 +11,7 @@ const rows = [
   { icon: Globe, title: "Global Network", desc: "Fabs in Taiwan. Labs in Switzerland." },
 ];
 
-function AnimatedCard({ r, index }: { r: any; index: number }) {
+function AnimatedCard({ r, index }: { r: { icon: React.ElementType, title: string, desc: string }; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
