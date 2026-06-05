@@ -1,40 +1,34 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import { Inter, Chakra_Petch } from "next/font/google";
 import "./globals.css";
+import BANavbar from "@/components/BANavbar";
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
 });
 
-const jetbrains = JetBrains_Mono({
-  variable: "--font-mono",
+const chakraPetch = Chakra_Petch({
+  variable: "--font-chakra",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "BRO University | Where Intelligence Is Born",
+  title: "BRO University | Master AI, Neuroscience & Blockchain",
   description:
-    "A next-generation institution fusing Neuroscience, AI, and Semiconductor Sciences. Not a university. A movement.",
-  keywords: [
-    "Neuroscience",
-    "Artificial Intelligence",
-    "Semiconductor Sciences",
-    "Gen Z University",
-    "Future of Education",
-  ],
+    "Join a private next-generation education community offering premium expert-led sessions in AI, Neuroscience, and Blockchain. Expert instructors. Real outcomes.",
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="hide-scrollbar">
+    <html lang="en">
       <body
-        className={`${spaceGrotesk.variable} ${jetbrains.variable} antialiased`}
+        className={`${inter.variable} ${chakraPetch.variable} antialiased`}
       >
+        <BANavbar />
         {children}
       </body>
     </html>

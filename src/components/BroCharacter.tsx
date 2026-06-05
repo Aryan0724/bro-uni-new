@@ -1,140 +1,137 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useGLTF, useAnimations, useCursor } from "@react-three/drei";
+import { useGLTF, useAnimations } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { MotionValue } from "framer-motion";
 
-export function BroCharacter({ progress }: { progress: MotionValue<number> }) {
+// Robot pose choreography per module
+// Contextual actions that feel meaningful and deliberate.
+const POSES = [
+  { action: "Idle",    rotY: 0,             posX: 0, posY: -1.2 }, // Mod 1 — Examining
+  { action: "Walking", rotY: Math.PI / 4,   posX: 0, posY: -1.2 }, // Mod 2 — Searching/Processing
+  { action: "Yes",     rotY: -Math.PI / 6,  posX: 0, posY: -1.2 }, // Mod 3 — Comprehension
+  { action: "Idle",    rotY: Math.PI / 2.5, posX: 0, posY: -1.2 }, // Mod 4 — Deep profile
+  { action: "Running", rotY: -Math.PI / 3,  posX: 0, posY: -1.2 }, // Mod 5 — High speed execution
+  { action: "ThumbsUp",rotY: Math.PI / 12,  posX: 0, posY: -1.2 }, // Mod 6 — Approval
+];
+
+export function BroCharacter({ progress, hoveredCard }: { progress: MotionValue<number>; hoveredCard: number | null; }) {
   const group = useRef<THREE.Group>(null);
   const { scene, animations } = useGLTF("/RobotExpressive.glb");
   const { actions } = useAnimations(animations, group);
-  
+
   const [currentAction, setCurrentAction] = useState<string>("Idle");
   const [hovered, setHovered] = useState(false);
   const [clicked, setClicked] = useState(false);
 
-  // Automatically change cursor to pointer when hovering over the robot
-  useCursor(hovered);
+  const [previousAction, setPreviousAction] = useState<string>("Idle");
 
   useEffect(() => {
-    // Play the current action and crossfade from the previous one
-    if (actions && currentAction && actions[currentAction]) {
-      const action = actions[currentAction];
-      action.reset().fadeIn(0.3).play();
-      
-      // If it's a one-shot animation like Jump, we don't want it to loop forever
-      if (currentAction === "Jump" || currentAction === "Punch" || currentAction === "ThumbsUp") {
-        action.setLoop(THREE.LoopOnce, 1);
-        action.clampWhenFinished = true;
-      } else {
-        action.setLoop(THREE.LoopRepeat, Infinity);
-      }
+    if (!actions || !currentAction || !actions[currentAction]) return;
 
-      return () => {
-        action.fadeOut(0.3);
-      };
+    const action = actions[currentAction];
+    
+    // Slow down movement actions for weight and scale
+    if (["Walking", "Running", "Yes", "ThumbsUp"].includes(currentAction)) {
+      action.setEffectiveTimeScale(0.5);
+    } else {
+      action.setEffectiveTimeScale(1.0);
     }
-  }, [actions, currentAction]);
+
+    if (["Jump", "Punch", "ThumbsUp", "Yes"].includes(currentAction)) {
+      action.setLoop(THREE.LoopOnce, 1);
+      action.clampWhenFinished = true;
+    } else {
+      action.setLoop(THREE.LoopRepeat, Infinity);
+    }
+
+    action.reset().play();
+    
+    if (previousAction && previousAction !== currentAction && actions[previousAction]) {
+      const prev = actions[previousAction];
+      action.crossFadeFrom(prev, 1.0, true);
+    } else {
+      action.fadeIn(1.0);
+    }
+  }, [actions, currentAction, previousAction]);
 
   useFrame((state, delta) => {
     if (!group.current || !actions) return;
 
-    const offset = progress.get();
+    const p = progress.get();
+    const n = POSES.length;
+    const raw = p * n;
+    const idx = Math.min(Math.floor(raw), n - 1);
+    const nextIdx = Math.min(idx + 1, n - 1);
+    const t = THREE.MathUtils.smootherstep(raw - idx, 0, 1);
 
-    // --- CINEMATIC ACTION SEQUENCING ---
-    // Trigger different baseline actions based on how far down they scrolled
-    let targetAction = "Idle";
-    if (offset > 0.2 && offset < 0.5) targetAction = "Walking";
-    else if (offset >= 0.5 && offset < 0.8) targetAction = "Dance";
-    else if (offset >= 0.8) targetAction = "Wave";
+    const A = POSES[idx];
+    const B = POSES[nextIdx];
 
-    // --- INTERACTIVE OVERRIDES ---
-    // If the user interacts with the robot, override the scroll-based animation
-    if (clicked) {
-      targetAction = "Jump";
-    } else if (hovered && targetAction === "Idle") {
-      // Only do thumbs up if we are idle, otherwise it interrupts walking/dancing
-      targetAction = "ThumbsUp";
-    }
-
+    // Update animation action
+    const targetAction = A.action;
     if (currentAction !== targetAction) {
+      setPreviousAction(currentAction);
       setCurrentAction(targetAction);
     }
 
-    // --- CINEMATIC CAMERA & POSITION CHOREOGRAPHY ---
-    let targetX = 0;
-    const targetY = -1; // Keep it centered vertically
-    let targetZ = 0;
-    let targetRotY = 0;
+    // Interpolate rotation and position
+    let targetRotY = THREE.MathUtils.lerp(A.rotY, B.rotY, t);
+    let targetPosY = THREE.MathUtils.lerp(A.posY, B.posY, t);
+    let targetPosX = THREE.MathUtils.lerp(A.posX, B.posX, t);
 
-    // Choreograph based on scroll phases
-    if (offset < 0.3) {
-      // Phase 1: Idle in the center
-      targetX = 0;
-      targetZ = 2;
-      targetRotY = 0;
-    } else if (offset < 0.6) {
-      // Phase 2: Walking to the right
-      targetX = THREE.MathUtils.lerp(0, 3, (offset - 0.3) / 0.3);
-      targetZ = 0;
-      targetRotY = -Math.PI / 4; 
-    } else if (offset < 0.8) {
-      // Phase 3: Dancing on the left
-      targetX = THREE.MathUtils.lerp(3, -3, (offset - 0.6) / 0.2);
-      targetZ = 3;
-      targetRotY = Math.PI / 4; 
+    // Interactive tracking logic
+    if (hoveredCard !== null) {
+      // Look at the hovered card (alternating left/right)
+      const isRightCard = hoveredCard % 2 === 0;
+      const lookTargetRotY = isRightCard ? -Math.PI / 4 : Math.PI / 4;
+      targetRotY = THREE.MathUtils.damp(group.current.rotation.y, lookTargetRotY, 4, delta);
+      group.current.rotation.x = THREE.MathUtils.damp(group.current.rotation.x, 0, 4, delta);
     } else {
-      // Phase 4: Waving close up in the center
-      targetX = THREE.MathUtils.lerp(-3, 0, (offset - 0.8) / 0.2);
-      targetZ = 5;
-      targetRotY = 0; 
-    }
-
-    // --- MOUSE TRACKING (Looking at the cursor) ---
-    // Make the robot feel alive by having it subtly track the mouse cursor
-    // Only apply strong tracking when idle or hovering
-    let targetRotX = 0;
-    if (targetAction === "Idle" || targetAction === "ThumbsUp" || targetAction === "Wave") {
-      const mouseX = (state.pointer.x * Math.PI) / 4; // look left/right
-      const mouseY = (state.pointer.y * Math.PI) / 8; // look up/down
-      
+      // Mouse-tracking subtle sway
+      const mouseX = (state.pointer.x * Math.PI) / 8;
+      const mouseY = (state.pointer.y * Math.PI) / 12;
       targetRotY += mouseX;
-      targetRotX = -mouseY; 
+      group.current.rotation.x = THREE.MathUtils.damp(
+        group.current.rotation.x, -mouseY, 4, delta
+      );
     }
 
-    // Smoothly animate to the targets
-    group.current.position.x = THREE.MathUtils.damp(group.current.position.x, targetX, 4, delta);
-    group.current.position.y = THREE.MathUtils.damp(group.current.position.y, targetY, 4, delta);
-    group.current.position.z = THREE.MathUtils.damp(group.current.position.z, targetZ, 4, delta);
+    // Gentle floating bob
+    const time = state.clock.elapsedTime;
+    const floatY = Math.sin(time * 1.2) * 0.04;
     
-    group.current.rotation.y = THREE.MathUtils.damp(group.current.rotation.y, targetRotY, 5, delta);
-    group.current.rotation.x = THREE.MathUtils.damp(group.current.rotation.x, targetRotX, 5, delta);
+    group.current.position.y = THREE.MathUtils.damp(
+      group.current.position.y, targetPosY + floatY, 3, delta
+    );
+    group.current.position.x = THREE.MathUtils.damp(
+      group.current.position.x, targetPosX, 4, delta
+    );
+    group.current.position.z = THREE.MathUtils.damp(
+      group.current.position.z, 0, 4, delta
+    );
+    group.current.rotation.y = THREE.MathUtils.damp(
+      group.current.rotation.y, targetRotY, 4, delta
+    );
   });
 
   return (
-    <group 
-      ref={group} 
-      dispose={null} 
-      position={[0, -1, 0]}
-      // Add Interaction Handlers
-      onPointerOver={(e) => {
-        e.stopPropagation();
-        setHovered(true);
-      }}
-      onPointerOut={(e) => {
-        e.stopPropagation();
-        setHovered(false);
-      }}
+    <group
+      ref={group}
+      dispose={null}
+      position={[0, -1.2, 0]}
+      onPointerOver={(e) => { e.stopPropagation(); setHovered(true); }}
+      onPointerOut={(e) => { e.stopPropagation(); setHovered(false); }}
       onClick={(e) => {
         e.stopPropagation();
         if (!clicked) {
           setClicked(true);
-          // The jump animation is about 1 second long
-          setTimeout(() => setClicked(false), 1200); 
+          setTimeout(() => setClicked(false), 1300);
         }
       }}
     >
-      <primitive object={scene} scale={0.6} />
+      {/* Robot model — scaled down so full robot is easily visible */}
+      <primitive object={scene} scale={0.5} />
     </group>
   );
 }

@@ -271,9 +271,14 @@ export default function Problem() {
           <motion.div style={{ opacity: extractionOpacity }} className="absolute inset-0 flex items-center justify-center p-6">
             <h2 className="heading-massive text-[6vw] md:text-[5vw] lg:text-[72px] leading-[1.1] text-white flex flex-wrap justify-center text-center">
               {words.map((word, wIdx) => {
-                const isHighlight = word.includes("intelligence");
+                const lowerWord = word.toLowerCase();
+                const isHighlight = lowerWord.includes("intelligence") || lowerWord.includes("institutions") || lowerWord.includes("ai");
                 return (
-                  <span key={wIdx} className="inline-block whitespace-nowrap mr-[0.25em]">
+                  <span 
+                    key={wIdx} 
+                    className="inline-block whitespace-nowrap"
+                    style={{ marginRight: "0.35em" }}
+                  >
                     {word.split("").map((letter) => {
                       const currentIndex = globalLetterTracker++;
                       return (
@@ -285,7 +290,7 @@ export default function Problem() {
                           scrollProgress={smoothScroll}
                           targetX={targetX}
                           targetY={targetY}
-                          color={isHighlight ? "var(--nvg-purple)" : "inherit"}
+                          color={isHighlight ? "var(--accent)" : "inherit"}
                         />
                       );
                     })}
