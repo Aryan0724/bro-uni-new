@@ -77,8 +77,8 @@ export function BroCharacter({ progress, hoveredCard }: { progress: MotionValue<
 
     // Interpolate rotation and position
     let targetRotY = THREE.MathUtils.lerp(A.rotY, B.rotY, t);
-    let targetPosY = THREE.MathUtils.lerp(A.posY, B.posY, t);
-    let targetPosX = THREE.MathUtils.lerp(A.posX, B.posX, t);
+    const targetPosY = THREE.MathUtils.lerp(A.posY, B.posY, t);
+    const targetPosX = THREE.MathUtils.lerp(A.posX, B.posX, t);
 
     // Interactive tracking logic
     if (hoveredCard !== null) {

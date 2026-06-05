@@ -11,7 +11,7 @@ export default function BAFooter() {
         <div className="flex justify-between items-start">
           <div className="max-w-4xl">
             <h2 className="font-sans font-medium text-3xl md:text-5xl lg:text-[54px] text-white leading-[1.1] tracking-tight">
-              THE FUTURE WON'T WAIT. THOSE WHO ACT TODAY WILL SHAPE TOMORROW'S TRENDS. JOIN US TO BE AMONG THE FIRST.
+              THE FUTURE WON&apos;T WAIT. THOSE WHO ACT TODAY WILL SHAPE TOMORROW&apos;S TRENDS. JOIN US TO BE AMONG THE FIRST.
             </h2>
           </div>
           

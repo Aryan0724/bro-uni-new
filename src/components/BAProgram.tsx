@@ -103,7 +103,7 @@ const SHOTS = [
 function CinematicCamera({ progress }: { progress: MotionValue<number> }) {
   const { camera } = useThree();
 
-  useFrame((state, delta) => {
+  useFrame((state) => {
     const p = progress.get();
     const n = modules.length;
     const raw = p * n;
@@ -461,6 +461,7 @@ export default function BAProgram() {
   // Section heading fade out after first scroll (explicitly clamped to prevent invalid CSS values)
   const headingOpacity = useTransform(scrollYProgress, [0, 0.08, 0.15, 1], [1, 1, 0, 0]);
   const headingY = useTransform(scrollYProgress, [0, 0.15, 1], [0, -30, -30]);
+  const hudOpacity = useTransform(scrollYProgress, [0, 0.05, 0.95, 1.0], [0, 1, 1, 0]);
 
   if (isMobile) {
     return (
@@ -487,7 +488,7 @@ export default function BAProgram() {
           </div>
         )}
         <div className="flex flex-col gap-6 mt-4">
-          {modules.map((mod, i) => (
+          {modules.map((mod) => (
             <div key={mod.id} className="bg-[#0a0a0a] border border-white/5 rounded-2xl p-6 flex flex-col gap-4">
               <div className="flex justify-between items-start">
                 <span style={{ color: mod.accentColor }} className="text-2xl font-bold">[{mod.id}]</span>
@@ -656,9 +657,7 @@ export default function BAProgram() {
 
         {/* Camera shot label — cinematic HUD */}
         <motion.div
-          style={{
-            opacity: useTransform(scrollYProgress, [0, 0.05, 0.95, 1.0], [0, 1, 1, 0]),
-          }}
+          style={{ opacity: hudOpacity }}
           className="absolute bottom-10 left-14 z-30 pointer-events-none"
         >
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
