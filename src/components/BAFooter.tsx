@@ -80,15 +80,7 @@ export default function BAFooter() {
           </div>
         </div>
 
-        {/* Bottom Bar: Credits */}
-        <div className="border-t border-white/10 pt-6 mt-8 flex flex-col md:flex-row justify-between items-center gap-6">
-          <span className="font-body text-gray-500 text-sm">Bro University</span>
-          <span className="font-body text-gray-500 text-sm hidden md:block">Designed by Maksym Kshevinskyy</span>
-          <div className="bg-white text-black text-xs font-bold px-3 py-2 rounded-md flex items-center gap-2">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16v8H12z"/><path d="M4 12h8v8H4z"/></svg>
-            Made in Framer
-          </div>
-        </div>
+
 
       </div>
     </footer>
