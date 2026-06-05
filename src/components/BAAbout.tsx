@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from 'react';
-import { motion, useInView, animate, useMotionValue, useMotionTemplate } from 'framer-motion';
+import { motion, useInView, animate, useMotionValue, useMotionTemplate, Variants } from 'framer-motion';
 
 // A cool animated counter for the huge numbers
 function Counter({ from, to, duration = 2, format = false }: { from: number, to: number, duration?: number, format?: boolean }) {
@@ -28,7 +28,7 @@ function Counter({ from, to, duration = 2, format = false }: { from: number, to:
 }
 
 export default function BAAbout() {
-  const containerVariant = {
+  const containerVariant: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -39,7 +39,7 @@ export default function BAAbout() {
     }
   };
 
-  const itemVariant = {
+  const itemVariant: Variants = {
     hidden: { opacity: 0, rotateY: 90, y: 50, scale: 0.8 },
     visible: { 
       opacity: 1, 
