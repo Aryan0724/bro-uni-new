@@ -482,7 +482,7 @@ export default function BAProgram() {
             <Canvas camera={{ position: [0, 0, 3.5], fov: 45 }}>
               <ambientLight intensity={0.5} />
               <directionalLight position={[2, 4, 2]} intensity={1.5} />
-              <BroCharacter progress={scrollYProgress} />
+              <BroCharacter progress={scrollYProgress} hoveredCard={null} />
               <Environment preset="city" />
             </Canvas>
           </div>
