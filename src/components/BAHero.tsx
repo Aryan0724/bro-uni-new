@@ -9,7 +9,7 @@ export default function BAHero() {
     visible: { 
       opacity: 1, 
       y: 0,
-      transition: { duration: 1.0, ease: [0.22, 1, 0.36, 1] }
+      transition: { duration: 1.0, ease: [0.22, 1, 0.36, 1] as const }
     }
   };
 
