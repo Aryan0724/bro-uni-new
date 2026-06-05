@@ -112,7 +112,7 @@ export default function CinematicCharacterSection() {
             <Sparkles count={100} scale={15} size={2} speed={0.4} color="var(--nvg-green)" />
             
             {/* Pass the scroll progress to the character to scrub animation */}
-            <BroCharacter progress={scrollYProgress} />
+            <BroCharacter progress={scrollYProgress} hoveredCard={null} />
           </Canvas>
         </div>
 
