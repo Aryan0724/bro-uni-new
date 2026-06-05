@@ -12,7 +12,7 @@ function Counter({ from, to, duration = 2, format = false }: { from: number, to:
     if (inView) {
       const controls = animate(from, to, {
         duration,
-        ease: [0.16, 1, 0.3, 1], // cinematic ease-out
+        ease: [0.16, 1, 0.3, 1] as const, // cinematic ease-out
         onUpdate(value) {
           if (nodeRef.current) {
             const num = Math.round(value);
@@ -46,7 +46,7 @@ export default function BAAbout() {
       rotateY: 0,
       y: 0,
       scale: 1,
-      transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] }
+      transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] as const }
     }
   };
 
