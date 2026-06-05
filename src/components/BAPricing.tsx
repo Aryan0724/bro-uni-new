@@ -1,8 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
-const staggerContainer = {
+const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -10,7 +10,7 @@ const staggerContainer = {
   }
 };
 
-const headerVariant = {
+const headerVariant: Variants = {
   hidden: { opacity: 0, y: -30 },
   visible: { 
     opacity: 1, 
@@ -19,7 +19,7 @@ const headerVariant = {
   }
 };
 
-const cardLeftVariant = {
+const cardLeftVariant: Variants = {
   hidden: { opacity: 0, x: -50 },
   visible: { 
     opacity: 1, 
@@ -28,7 +28,7 @@ const cardLeftVariant = {
   }
 };
 
-const cardRightVariant = {
+const cardRightVariant: Variants = {
   hidden: { opacity: 0, x: 50 },
   visible: { 
     opacity: 1, 
@@ -37,7 +37,7 @@ const cardRightVariant = {
   }
 };
 
-const listItemVariant = {
+const listItemVariant: Variants = {
   hidden: { opacity: 0, x: -10 },
   visible: { 
     opacity: 1, 
