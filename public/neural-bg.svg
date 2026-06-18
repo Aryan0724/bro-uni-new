@@ -1,0 +1,176 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <!-- Neural Network Graph — Minimal, Architectural, B&W -->
+  <defs>
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background glow -->
+  <rect width="1200" height="800" fill="url(#bgGrad)"/>
+
+  <!-- Layer 1 — Input nodes (left column) -->
+  <!-- L1: 8 nodes -->
+  <circle cx="80" cy="100" r="3.5" fill="#ffffff" opacity="0.35"/>
+  <circle cx="80" cy="185" r="3.5" fill="#ffffff" opacity="0.35"/>
+  <circle cx="80" cy="270" r="3.5" fill="#ffffff" opacity="0.35"/>
+  <circle cx="80" cy="355" r="3.5" fill="#ffffff" opacity="0.35"/>
+  <circle cx="80" cy="440" r="3.5" fill="#ffffff" opacity="0.35"/>
+  <circle cx="80" cy="525" r="3.5" fill="#ffffff" opacity="0.35"/>
+  <circle cx="80" cy="610" r="3.5" fill="#ffffff" opacity="0.35"/>
+  <circle cx="80" cy="695" r="3.5" fill="#ffffff" opacity="0.35"/>
+
+  <!-- Layer 2 -->
+  <circle cx="280" cy="130" r="4" fill="#ffffff" opacity="0.4"/>
+  <circle cx="280" cy="240" r="4" fill="#ffffff" opacity="0.4"/>
+  <circle cx="280" cy="350" r="4" fill="#ffffff" opacity="0.5"/>
+  <circle cx="280" cy="460" r="4" fill="#ffffff" opacity="0.4"/>
+  <circle cx="280" cy="570" r="4" fill="#ffffff" opacity="0.4"/>
+  <circle cx="280" cy="670" r="3.5" fill="#ffffff" opacity="0.35"/>
+
+  <!-- Layer 3 — Hidden layer A -->
+  <circle cx="480" cy="80" r="4.5" fill="#ffffff" opacity="0.45"/>
+  <circle cx="480" cy="195" r="5" fill="#ffffff" opacity="0.55"/>
+  <circle cx="480" cy="310" r="5" fill="#ffffff" opacity="0.55"/>
+  <circle cx="480" cy="430" r="5" fill="#ffffff" opacity="0.55"/>
+  <circle cx="480" cy="545" r="4.5" fill="#ffffff" opacity="0.45"/>
+  <circle cx="480" cy="660" r="4" fill="#ffffff" opacity="0.4"/>
+  <circle cx="480" cy="750" r="3.5" fill="#ffffff" opacity="0.3"/>
+
+  <!-- Layer 4 — Hidden layer B (denser) -->
+  <circle cx="680" cy="60" r="3.5" fill="#ffffff" opacity="0.35"/>
+  <circle cx="680" cy="155" r="5.5" fill="#ffffff" opacity="0.6"/>
+  <circle cx="680" cy="260" r="5.5" fill="#ffffff" opacity="0.65"/>
+  <circle cx="680" cy="370" r="6" fill="#ffffff" opacity="0.7"/>
+  <circle cx="680" cy="480" r="5.5" fill="#ffffff" opacity="0.6"/>
+  <circle cx="680" cy="580" r="5" fill="#ffffff" opacity="0.5"/>
+  <circle cx="680" cy="680" r="4" fill="#ffffff" opacity="0.4"/>
+  <circle cx="680" cy="760" r="3" fill="#ffffff" opacity="0.3"/>
+
+  <!-- Layer 5 — Output -->
+  <circle cx="900" cy="180" r="5" fill="#ffffff" opacity="0.5"/>
+  <circle cx="900" cy="310" r="5.5" fill="#ffffff" opacity="0.55"/>
+  <circle cx="900" cy="430" r="6" fill="#ffffff" opacity="0.65"/>
+  <circle cx="900" cy="560" r="5" fill="#ffffff" opacity="0.5"/>
+  <circle cx="900" cy="670" r="4" fill="#ffffff" opacity="0.4"/>
+
+  <!-- Layer 6 — Final output -->
+  <circle cx="1100" cy="280" r="5" fill="#ffffff" opacity="0.5"/>
+  <circle cx="1100" cy="400" r="6" fill="#ffffff" opacity="0.6"/>
+  <circle cx="1100" cy="520" r="5" fill="#ffffff" opacity="0.5"/>
+
+  <!-- Connections Layer 1 → Layer 2 -->
+  <g stroke="#ffffff" stroke-width="0.5" opacity="0.08">
+    <line x1="80" y1="100" x2="280" y2="130"/>
+    <line x1="80" y1="100" x2="280" y2="240"/>
+    <line x1="80" y1="100" x2="280" y2="350"/>
+    <line x1="80" y1="185" x2="280" y2="130"/>
+    <line x1="80" y1="185" x2="280" y2="240"/>
+    <line x1="80" y1="185" x2="280" y2="350"/>
+    <line x1="80" y1="270" x2="280" y2="240"/>
+    <line x1="80" y1="270" x2="280" y2="350"/>
+    <line x1="80" y1="270" x2="280" y2="460"/>
+    <line x1="80" y1="355" x2="280" y2="350"/>
+    <line x1="80" y1="355" x2="280" y2="460"/>
+    <line x1="80" y1="440" x2="280" y2="350"/>
+    <line x1="80" y1="440" x2="280" y2="460"/>
+    <line x1="80" y1="440" x2="280" y2="570"/>
+    <line x1="80" y1="525" x2="280" y2="460"/>
+    <line x1="80" y1="525" x2="280" y2="570"/>
+    <line x1="80" y1="610" x2="280" y2="570"/>
+    <line x1="80" y1="610" x2="280" y2="670"/>
+    <line x1="80" y1="695" x2="280" y2="670"/>
+  </g>
+
+  <!-- Connections Layer 2 → Layer 3 -->
+  <g stroke="#ffffff" stroke-width="0.6" opacity="0.1">
+    <line x1="280" y1="130" x2="480" y2="80"/>
+    <line x1="280" y1="130" x2="480" y2="195"/>
+    <line x1="280" y1="130" x2="480" y2="310"/>
+    <line x1="280" y1="240" x2="480" y2="80"/>
+    <line x1="280" y1="240" x2="480" y2="195"/>
+    <line x1="280" y1="240" x2="480" y2="310"/>
+    <line x1="280" y1="240" x2="480" y2="430"/>
+    <line x1="280" y1="350" x2="480" y2="195"/>
+    <line x1="280" y1="350" x2="480" y2="310"/>
+    <line x1="280" y1="350" x2="480" y2="430"/>
+    <line x1="280" y1="460" x2="480" y2="310"/>
+    <line x1="280" y1="460" x2="480" y2="430"/>
+    <line x1="280" y1="460" x2="480" y2="545"/>
+    <line x1="280" y1="570" x2="480" y2="430"/>
+    <line x1="280" y1="570" x2="480" y2="545"/>
+    <line x1="280" y1="570" x2="480" y2="660"/>
+    <line x1="280" y1="670" x2="480" y2="545"/>
+    <line x1="280" y1="670" x2="480" y2="660"/>
+    <line x1="280" y1="670" x2="480" y2="750"/>
+  </g>
+
+  <!-- Connections Layer 3 → Layer 4 -->
+  <g stroke="#ffffff" stroke-width="0.7" opacity="0.12">
+    <line x1="480" y1="80" x2="680" y2="60"/>
+    <line x1="480" y1="80" x2="680" y2="155"/>
+    <line x1="480" y1="195" x2="680" y2="60"/>
+    <line x1="480" y1="195" x2="680" y2="155"/>
+    <line x1="480" y1="195" x2="680" y2="260"/>
+    <line x1="480" y1="310" x2="680" y2="155"/>
+    <line x1="480" y1="310" x2="680" y2="260"/>
+    <line x1="480" y1="310" x2="680" y2="370"/>
+    <line x1="480" y1="430" x2="680" y2="260"/>
+    <line x1="480" y1="430" x2="680" y2="370"/>
+    <line x1="480" y1="430" x2="680" y2="480"/>
+    <line x1="480" y1="545" x2="680" y2="370"/>
+    <line x1="480" y1="545" x2="680" y2="480"/>
+    <line x1="480" y1="545" x2="680" y2="580"/>
+    <line x1="480" y1="660" x2="680" y2="480"/>
+    <line x1="480" y1="660" x2="680" y2="580"/>
+    <line x1="480" y1="660" x2="680" y2="680"/>
+    <line x1="480" y1="750" x2="680" y2="680"/>
+    <line x1="480" y1="750" x2="680" y2="760"/>
+  </g>
+
+  <!-- Connections Layer 4 → Layer 5 (stronger = more opaque) -->
+  <g stroke="#ffffff" stroke-width="0.8" opacity="0.15">
+    <line x1="680" y1="155" x2="900" y2="180"/>
+    <line x1="680" y1="260" x2="900" y2="180"/>
+    <line x1="680" y1="260" x2="900" y2="310"/>
+    <line x1="680" y1="370" x2="900" y2="180"/>
+    <line x1="680" y1="370" x2="900" y2="310"/>
+    <line x1="680" y1="370" x2="900" y2="430"/>
+    <line x1="680" y1="480" x2="900" y2="310"/>
+    <line x1="680" y1="480" x2="900" y2="430"/>
+    <line x1="680" y1="480" x2="900" y2="560"/>
+    <line x1="680" y1="580" x2="900" y2="430"/>
+    <line x1="680" y1="580" x2="900" y2="560"/>
+    <line x1="680" y1="680" x2="900" y2="560"/>
+    <line x1="680" y1="680" x2="900" y2="670"/>
+    <line x1="680" y1="760" x2="900" y2="670"/>
+  </g>
+
+  <!-- Connections Layer 5 → Layer 6 -->
+  <g stroke="#ffffff" stroke-width="1" opacity="0.18">
+    <line x1="900" y1="180" x2="1100" y2="280"/>
+    <line x1="900" y1="310" x2="1100" y2="280"/>
+    <line x1="900" y1="310" x2="1100" y2="400"/>
+    <line x1="900" y1="430" x2="1100" y2="280"/>
+    <line x1="900" y1="430" x2="1100" y2="400"/>
+    <line x1="900" y1="430" x2="1100" y2="520"/>
+    <line x1="900" y1="560" x2="1100" y2="400"/>
+    <line x1="900" y1="560" x2="1100" y2="520"/>
+    <line x1="900" y1="670" x2="1100" y2="520"/>
+  </g>
+
+  <!-- Accent: a few highlighted signal paths (slightly brighter) -->
+  <g stroke="#ffffff" stroke-width="1.2" opacity="0.25">
+    <line x1="280" y1="350" x2="480" y2="430"/>
+    <line x1="480" y1="430" x2="680" y2="370"/>
+    <line x1="680" y1="370" x2="900" y2="430"/>
+    <line x1="900" y1="430" x2="1100" y2="400"/>
+  </g>
+  <!-- Highlighted nodes on that signal path -->
+  <circle cx="280" cy="350" r="5.5" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.3"/>
+  <circle cx="480" cy="430" r="6.5" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.3"/>
+  <circle cx="680" cy="370" r="7.5" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.3"/>
+  <circle cx="900" cy="430" r="7.5" fill="none" stroke="#ffffff" stroke-width="1.2" opacity="0.35"/>
+  <circle cx="1100" cy="400" r="8" fill="none" stroke="#ffffff" stroke-width="1.2" opacity="0.35"/>
+</svg>

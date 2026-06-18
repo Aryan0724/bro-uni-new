@@ -1,216 +1,232 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
+import { motion } from "framer-motion";
 
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.15, delayChildren: 0.1 }
-  }
-};
-
-const headerVariant: Variants = {
+const headerVariant = {
   hidden: { opacity: 0, y: -30 },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const }
-  }
-};
-
-const cardLeftVariant: Variants = {
-  hidden: { opacity: 0, x: -50 },
-  visible: { 
-    opacity: 1, 
-    x: 0,
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const }
-  }
-};
-
-const cardRightVariant: Variants = {
-  hidden: { opacity: 0, x: 50 },
-  visible: { 
-    opacity: 1, 
-    x: 0,
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const }
-  }
-};
-
-const listItemVariant: Variants = {
-  hidden: { opacity: 0, x: -10 },
-  visible: { 
-    opacity: 1, 
-    x: 0, 
-    transition: { duration: 0.5, ease: "easeOut" } 
-  }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const } }
 };
 
 export default function BAPricing() {
   return (
-    <section id="pricing" className="section-padding bg-[var(--bg-secondary)] relative border-b border-[var(--border)] overflow-hidden">
-      <div className="container-inner">
-        <motion.div 
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          <div className="relative z-10 w-full flex flex-col items-center">
-            {/* Ambient Glow Behind Cards */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[600px] bg-gradient-to-r from-[var(--accent)] to-orange-700 opacity-[0.15] blur-[80px] rounded-full pointer-events-none z-0"></div>
+    <>
+      {/* ── INVESTOR SECTION ── */}
+      <section id="investor" className="section-padding bg-black relative border-b border-white/5 overflow-hidden">
+        <div className="max-w-7xl mx-auto">
 
-            <div className="text-center mb-16 relative z-10">
-              <motion.div variants={headerVariant} className="mb-6">
-                <span className="font-accent text-[11px] font-bold text-[var(--accent)] uppercase tracking-widest">
-                  TUITION FEES
-                </span>
-              </motion.div>
-              
-              <motion.h2 
-                variants={headerVariant} 
-                className="font-display font-light text-5xl md:text-7xl text-[var(--text-primary)] leading-tight tracking-tight"
-              >
-                INVEST IN YOUR <span className="font-bold text-[var(--text-muted)]">COGNITIVE FUTURE.</span>
-              </motion.h2>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-6xl mx-auto relative z-10 px-4 md:px-0">
-              <motion.div 
-                variants={cardLeftVariant} 
-                whileHover={{ scale: 1.01, y: -4, boxShadow: "0 20px 50px rgba(0, 0, 0, 0.8)" }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
-                className="bg-[#050505] border border-gray-800/80 flex flex-col cursor-pointer group rounded-lg relative"
-                style={{ padding: "48px" }}
-              >
-                {/* Top Row: Title & Tariff */}
-                <div className="flex justify-between items-start mb-1">
-                  <div className="font-sans font-bold text-[36px] text-white tracking-tight leading-none">
-                    NEUROSCIENCE <span className="text-white">]</span>
-                  </div>
-                  <div className="flex items-center gap-3 mt-1 shrink-0">
-                    <span className="text-[10px] font-bold text-gray-500 tracking-widest uppercase">TARIFF</span>
-                    <div className="flex items-center gap-1">
-                      <div className="w-5 h-5 bg-white rounded-full"></div>
-                      <div className="flex items-center">
-                        <span style={{ fontSize: 16, lineHeight: 1, fontFamily: "Arial", color: "gray" }}>&copy;</span>
-                        <div className="w-3 h-3 bg-gray-500 rounded-full ml-1"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Subheader */}
-                <div className="font-sans font-medium text-gray-400 text-[14px]">
-                  Cognitive interfaces and brain mapping
-                </div>
-                
-                {/* Separator Line */}
-                <div className="w-full h-[1px] bg-gray-800/50 my-8"></div>
-                
-                {/* Features List */}
-                <motion.ul 
-                  variants={staggerContainer}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  className="flex flex-col gap-4 mb-20"
-                >
-                  {["Access to full 6-week course", "Personal account with materials", "Recordings of all sessions", "Closed Telegram community", "Digital certificate upon completion"].map((feature, i) => (
-                    <motion.li key={i} variants={listItemVariant} className="flex items-center gap-4 font-sans font-medium text-[15px] text-gray-200">
-                      <div className="w-2 h-2 rounded-full bg-[var(--accent)] shrink-0"></div>
-                      {feature}
-                    </motion.li>
-                  ))}
-                </motion.ul>
-                
-                {/* Bottom Row: Button */}
-                <div className="mt-auto pt-6 flex justify-start">
-                  <div className="relative group-hover:-translate-y-1 transition-transform duration-300">
-                    <button 
-                      className="bg-white text-black font-sans font-bold text-[12px] md:text-[13px] tracking-wider rounded-full flex items-center gap-4 hover:bg-gray-100 transition-colors whitespace-nowrap shadow-lg"
-                      style={{ padding: "14px 8px 14px 24px" }}
-                    >
-                      <span>BUY THE COURSE</span>
-                      <div className="w-[32px] h-[32px] bg-black rounded-full flex items-center justify-center text-white shrink-0 shadow-md">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                          <line x1="12" y1="5" x2="12" y2="19"></line>
-                          <line x1="5" y1="12" x2="19" y2="12"></line>
-                        </svg>
-                      </div>
-                    </button>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* AI Plan */}
-              <motion.div 
-                variants={cardRightVariant} 
-                whileHover={{ scale: 1.01, y: -4, boxShadow: "0 20px 50px rgba(0, 0, 0, 0.8)" }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
-                className="bg-[#050505] border border-gray-800/80 flex flex-col relative cursor-pointer group rounded-lg"
-                style={{ padding: "48px" }}
-              >
-                {/* Top Row: Title & Tariff */}
-                <div className="flex justify-between items-start mb-1">
-                  <div className="font-sans font-bold text-[36px] text-white tracking-tight leading-none">
-                    AI ]
-                  </div>
-                  <div className="flex items-center gap-3 mt-1 shrink-0">
-                    <span className="text-[10px] font-bold text-gray-500 tracking-widest uppercase">TARIFF</span>
-                    <div className="flex items-center">
-                      <div className="w-4 h-5 bg-white rounded-l-full"></div>
-                      <div className="w-4 h-5 bg-gray-500 rounded-r-full ml-[1px]"></div>
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Subheader */}
-                <div className="font-sans font-medium text-gray-400 text-[14px]">
-                  Proprietary agent models and architectures
-                </div>
-                
-                {/* Separator Line */}
-                <div className="w-full h-[1px] bg-gray-800/50 my-8"></div>
-                
-                {/* Features List */}
-                <motion.ul 
-                  variants={staggerContainer}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  className="flex flex-col gap-4 mb-20"
-                >
-                  {["Everything in Neuroscience", "Extra Q&A session with lecturer", "Speaker presentations + contacts", "Priority support in community", "Bonus workshop on AI architecture"].map((feature, i) => (
-                    <motion.li key={i} variants={listItemVariant} className="flex items-center gap-4 font-sans font-medium text-[15px] text-gray-200">
-                      <div className="w-2 h-2 rounded-full bg-white shrink-0"></div>
-                      {feature}
-                    </motion.li>
-                  ))}
-                </motion.ul>
-                
-                {/* Bottom Row: Button */}
-                <div className="mt-auto pt-6 flex justify-start">
-                  <div className="relative group-hover:-translate-y-1 transition-transform duration-300">
-                    <button 
-                      className="bg-white text-black font-sans font-bold text-[12px] md:text-[13px] tracking-wider rounded-full flex items-center gap-4 hover:bg-gray-100 transition-colors whitespace-nowrap shadow-lg"
-                      style={{ padding: "14px 8px 14px 24px" }}
-                    >
-                      <span>BUY THE COURSE</span>
-                      <div className="w-[32px] h-[32px] bg-black rounded-full flex items-center justify-center text-white shrink-0 shadow-md">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                          <line x1="12" y1="5" x2="12" y2="19"></line>
-                          <line x1="5" y1="12" x2="19" y2="12"></line>
-                        </svg>
-                      </div>
-                    </button>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
+          {/* Section label + Heading */}
+          <div className="text-center mb-20">
+            <motion.span
+              initial="hidden" whileInView="visible" viewport={{ once: true }} variants={headerVariant}
+              className="text-[10px] font-body tracking-[0.25em] text-white/30 uppercase block mb-5"
+            >
+              / Investor Interest
+            </motion.span>
+            <motion.h2
+              initial="hidden" whileInView="visible" viewport={{ once: true }} variants={headerVariant}
+              className="font-display font-bold text-5xl md:text-7xl text-white leading-[1.05] tracking-tight uppercase"
+            >
+              BUILDING A SCALABLE<br /><span className="text-white/25">DEEP-TECH EDUCATION ECOSYSTEM.</span>
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="font-body text-white/40 text-[15px] leading-relaxed mt-6 max-w-2xl mx-auto"
+            >
+              BRO University is designed to attract strategic investors, research collaborators, global faculty, and innovation partners.
+            </motion.p>
           </div>
-        </motion.div>
-      </div>
-    </section>
+
+          {/* Investor card */}
+          <div className="max-w-5xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="bg-[#080808] flex flex-col md:flex-row gap-0 border border-white/8"
+            >
+              {/* Left column */}
+              <div className="flex flex-col gap-8 p-12 flex-1">
+                <div className="flex flex-col gap-4">
+                  <span className="text-[10px] font-body tracking-[0.2em] text-white/30 uppercase">For Institutions &amp; Investors</span>
+                  <h3 className="font-display font-bold text-4xl text-white tracking-tight leading-none">
+                    Partner<br />With Us
+                  </h3>
+                  <div className="w-8 h-[1px] bg-white/20 mt-1" />
+                  <p className="font-body text-white/40 text-[14px] leading-relaxed max-w-xs">
+                    We are building a scalable deep-tech education ecosystem with global potential. Partner with the institution defining the next era of human intelligence.
+                  </p>
+                </div>
+
+                <ul className="flex flex-col gap-3">
+                  {[
+                    "Research institution collaboration",
+                    "Strategic investment opportunities",
+                    "Co-develop deep tech programs",
+                    "Access to founding talent pipeline",
+                    "Global innovation partnership",
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-center gap-3 font-body text-[13px] text-white/50">
+                      <div className="w-1.5 h-1.5 rounded-full bg-white/30 shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-auto">
+                  <a href="mailto:brouniversity@gmail.com" className="btn-white inline-flex" style={{ padding: "15px 30px", fontSize: "12px" }}>
+                    Partner With Us →
+                  </a>
+                </div>
+              </div>
+
+              {/* Right column — stats */}
+              <div className="flex flex-col justify-center gap-10 p-12 border-t md:border-t-0 md:border-l border-white/5 min-w-[260px]">
+                {[
+                  { label: "500+", sub: "Future Scientists" },
+                  { label: "300+", sub: "Future Founders" },
+                  { label: "∞", sub: "Global Impact" },
+                ].map((stat) => (
+                  <div key={stat.label} className="flex flex-col gap-1">
+                    <span className="font-display font-bold text-5xl text-white tracking-tight">{stat.label}</span>
+                    <span className="text-[10px] font-body tracking-[0.2em] text-white/30 uppercase">{stat.sub}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ── ADMISSIONS / EARLY ACCESS SECTION ── */}
+      <section id="admissions" className="section-padding bg-black relative border-b border-white/5 overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+
+          {/* Section label + Heading */}
+          <div className="text-center mb-20">
+            <motion.span
+              initial="hidden" whileInView="visible" viewport={{ once: true }} variants={headerVariant}
+              className="text-[10px] font-body tracking-[0.25em] text-white/30 uppercase block mb-5"
+            >
+              / Admissions &amp; Early Access
+            </motion.span>
+            <motion.h2
+              initial="hidden" whileInView="visible" viewport={{ once: true }} variants={headerVariant}
+              className="font-display font-bold text-5xl md:text-7xl text-white leading-[1.05] tracking-tight uppercase"
+            >
+              JOIN THE<br /><span className="text-white/25">FOUNDING COHORT.</span>
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="font-body text-white/40 text-[15px] leading-relaxed mt-6 max-w-xl mx-auto"
+            >
+              Be among the first students and researchers to access BRO University&apos;s neuroscience-first innovation ecosystem.
+            </motion.p>
+          </div>
+
+          {/* Two CTA Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-[1px] border border-white/8 bg-white/5 max-w-5xl mx-auto">
+
+            {/* Become an Early Supporter */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="bg-[#080808] flex flex-col gap-8 p-12 group hover:bg-[#0d0d0d] transition-colors duration-300"
+            >
+              <div className="flex flex-col gap-4">
+                <span className="text-[10px] font-body tracking-[0.2em] text-white/30 uppercase">For Students &amp; Researchers</span>
+                <h3 className="font-display font-bold text-4xl text-white tracking-tight leading-none">
+                  Become an<br />Early Supporter
+                </h3>
+                <div className="w-8 h-[1px] bg-white/20 mt-1" />
+                <p className="font-body text-white/40 text-[14px] leading-relaxed max-w-xs">
+                  Join the founding community. Be among the first to access neuroscience programs, research opportunities, and the HEY BRO ecosystem as it comes to life.
+                </p>
+              </div>
+
+              <ul className="flex flex-col gap-3">
+                {[
+                  "Priority access to founding cohort",
+                  "Early research collaboration opportunities",
+                  "HEY BRO community membership",
+                  "Direct engagement with founding team",
+                  "Shape the university's research direction",
+                ].map((item, i) => (
+                  <li key={i} className="flex items-center gap-3 font-body text-[13px] text-white/50">
+                    <div className="w-1.5 h-1.5 rounded-full bg-white/30 shrink-0" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-auto">
+                <button className="btn-primary" style={{ padding: "15px 30px", fontSize: "12px" }}>
+                  Join Early Access →
+                </button>
+              </div>
+            </motion.div>
+
+            {/* Partner section for mobile/secondary */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="bg-[#080808] flex flex-col gap-8 p-12 group hover:bg-[#0d0d0d] transition-colors duration-300"
+            >
+              <div className="flex flex-col gap-4">
+                <span className="text-[10px] font-body tracking-[0.2em] text-white/30 uppercase">THE FUTURE WILL BELONG TO INNOVATORS.</span>
+                <h3 className="font-display font-bold text-4xl text-white tracking-tight leading-none">
+                  Why Join<br />Now?
+                </h3>
+                <div className="w-8 h-[1px] bg-white/20 mt-1" />
+                <p className="font-body text-white/40 text-[14px] leading-relaxed max-w-xs">
+                  Those who act today will shape tomorrow&apos;s world. BRO University is building from the ground up — and early supporters become part of its foundation.
+                </p>
+              </div>
+
+              <ul className="flex flex-col gap-3">
+                {[
+                  "Be part of a research-first institution",
+                  "Access future Neuroscience programs",
+                  "Early access to AI & Semiconductor tracks",
+                  "Network with founders and researchers",
+                  "Shape the BRO University ecosystem",
+                ].map((item, i) => (
+                  <li key={i} className="flex items-center gap-3 font-body text-[13px] text-white/50">
+                    <div className="w-1.5 h-1.5 rounded-full bg-white/30 shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-auto">
+                <a href="mailto:brouniversity@gmail.com" className="btn-white inline-flex" style={{ padding: "15px 30px", fontSize: "12px" }}>
+                  Request Info Pack →
+                </a>
+              </div>
+            </motion.div>
+
+          </div>
+
+          {/* Closing strong line */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+            className="text-center font-display font-bold text-2xl md:text-4xl text-white/10 tracking-tight uppercase mt-20"
+          >
+            HEY BRO, THE FUTURE STARTS HERE.
+          </motion.p>
+
+        </div>
+      </section>
+    </>
   );
 }

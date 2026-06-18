@@ -2,52 +2,60 @@
 
 import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
+import Image from "next/image";
 
 // ─── Card data ────────────────────────────────────────────────────────────────
 const CARDS = [
   {
     id: "c1",
     num: "01",
-    title: "LAW\nFIRMS",
-    body: "New market of blockchain legal services at your fingertips. Get ahead of crypto regulation.",
+    title: "NEUROSCIENCE",
+    subtitle: "Active / Foundation School",
+    body: "Focused on brain technology, neuroinformatics, AI healthcare systems, and human-machine intelligence. The active core of BRO University.",
     white: true,
     fromRight: true,
     clip: "polygon(0 0, 100% 0, 100% 100%, 44px 100%, 0 calc(100% - 44px))",
+    hasWafer: false,
   },
   {
     id: "c2",
     num: "02",
-    title: "COMPLIANCE\nOFFICERS",
-    body: "Master AML/KYC rules and reduce crypto risks. Become the compliance authority your firm needs.",
+    title: "ARTIFICIAL\nINTELLIGENCE",
+    subtitle: "Coming Soon / Vision Section",
+    body: "Focused on machine learning, intelligent systems, robotics, and future computing. Expanding from the Neuroscience foundation.",
     white: false,
     fromRight: false,
     clip: "polygon(0 0, 100% 0, 100% 100%, 100% 100%, 44px 100%, 0 calc(100% - 44px))",
+    hasWafer: false,
   },
   {
     id: "c3",
     num: "03",
-    title: "ENTRE-\nPRENEURS",
-    body: "Secure your startup, avoid fraud, and gain investor trust in the Web3 ecosystem.",
+    title: "SEMICONDUCTOR\nSCIENCES",
+    subtitle: "Coming Soon / Vision Section",
+    body: "Semiconductor Innovation — focused on silicon architecture, chip design, and deep-tech hardware for the AI era.",
     white: false,
     fromRight: true,
     clip: "polygon(44px 0, 100% 0, 100% 100%, 0 100%, 0 44px)",
+    hasWafer: true,
   },
   {
     id: "c4",
     num: "04",
-    title: "READY\nTO JOIN?",
-    body: "Join hundreds of professionals already transforming their careers with BRO University.",
+    title: "NANOTECHNOLOGY\n& FUTURE INNOVATION",
+    subtitle: "Vision Area",
+    body: "Nanotechnology, advanced computing, research startups, robotics, deep tech ventures, and future innovation labs.",
     white: false,
     fromRight: false,
     cta: true,
     clip: "polygon(0 0, 100% 0, 100% calc(100% - 44px), calc(100% - 44px) 100%, 0 100%)",
+    hasWafer: false,
   },
 ];
 
 // Each card occupies a 25% slice of scroll progress (0.0-1.0)
-// Appear at start of slice, full at 20%, hold, fade at 80%, gone by end
 const RANGES = CARDS.map((_, i) => {
-  const step = 1 / CARDS.length; // 0.25
+  const step = 1 / CARDS.length;
   const start = i * step;
   const end = (i + 1) * step;
   const pad = step * 0.18;
@@ -67,7 +75,6 @@ function AnimatedCard({
   const [r0, r1, r2, r3] = range;
   const { fromRight } = card;
 
-  // Card slides in from the far edge of its half, exits toward center
   const x = useTransform(
     progress,
     [r0, r1, r2, r3],
@@ -81,7 +88,7 @@ function AnimatedCard({
   const opacity = useTransform(progress, [r0, r1, r2, r3], [0, 1, 1, 0]);
   const scale = useTransform(progress, [r0, r1, r2, r3], [0.85, 1, 1, 0.94]);
 
-  // Ghost number on opposite side slides in from the opposite direction
+  // Ghost number on opposite side
   const ghostX = useTransform(
     progress,
     [r0, r1, r2, r3],
@@ -93,19 +100,18 @@ function AnimatedCard({
     ]
   );
 
-  // Card stays within its half: right half starts at 54%, left half ends at 46%
   const side = fromRight
     ? { left: "54%", right: "auto" }
     : { right: "54%", left: "auto" };
 
-  // Ghost label on the opposite half
   const ghostSide = fromRight
     ? { right: "54%", left: "auto" }
     : { left: "54%", right: "auto" };
 
   const bg = card.white ? "#f5f5f5" : "#0f0f0f";
   const titleColor = card.white ? "#0d0d0d" : "#ffffff";
-  const bodyColor = card.white ? "rgba(0,0,0,0.6)" : "rgba(255,255,255,0.6)";
+  const subtitleColor = card.white ? "rgba(0,0,0,0.45)" : "rgba(255,255,255,0.4)";
+  const bodyColor = card.white ? "rgba(0,0,0,0.6)" : "rgba(255,255,255,0.55)";
   const numColor = card.white ? "rgba(0,0,0,0.18)" : "rgba(255,255,255,0.12)";
 
   return (
@@ -162,7 +168,7 @@ function AnimatedCard({
         position: "absolute",
         top: "50%",
         y: "-50%",
-        width: "min(400px, 42vw)",
+        width: "min(420px, 44vw)",
         ...side,
         x,
         opacity,
@@ -176,11 +182,11 @@ function AnimatedCard({
           clipPath: card.clip,
           padding: "36px 36px 32px",
           position: "relative",
-          minHeight: 260,
+          minHeight: card.hasWafer ? 300 : 260,
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          gap: 24,
+          gap: 16,
           boxShadow: card.white
             ? "0 20px 60px rgba(0,0,0,0.45)"
             : "0 20px 60px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.06)",
@@ -221,24 +227,60 @@ function AnimatedCard({
           }}
         />
 
-        {/* Title */}
-        <h3
-          style={{
-            fontFamily:
-              '"Helvetica Neue", "HelveticaNeueCyr Medium", Helvetica, Arial, sans-serif',
-            fontSize: "clamp(26px, 3vw, 38px)",
-            fontWeight: 700,
-            color: titleColor,
-            textTransform: "uppercase",
-            letterSpacing: "-0.03em",
-            lineHeight: 1.0,
-            margin: 0,
-            whiteSpace: "pre-line",
-            paddingTop: 8,
-          }}
-        >
-          {card.title}
-        </h3>
+        {/* Title + subtitle */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 4, paddingTop: 8 }}>
+          <h3
+            style={{
+              fontFamily:
+                '"Helvetica Neue", "HelveticaNeueCyr Medium", Helvetica, Arial, sans-serif',
+              fontSize: "clamp(22px, 2.5vw, 32px)",
+              fontWeight: 700,
+              color: titleColor,
+              textTransform: "uppercase",
+              letterSpacing: "-0.03em",
+              lineHeight: 1.05,
+              margin: 0,
+              whiteSpace: "pre-line",
+            }}
+          >
+            {card.title}
+          </h3>
+          <p
+            style={{
+              fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+              fontSize: 10,
+              fontWeight: 600,
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+              color: subtitleColor,
+              margin: 0,
+            }}
+          >
+            {card.subtitle}
+          </p>
+        </div>
+
+        {/* Silicon Wafer visual for card 03 */}
+        {card.hasWafer && (
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            <div style={{ position: "relative", width: 72, height: 72, borderRadius: "50%", overflow: "hidden", flexShrink: 0 }}>
+              <Image
+                src="/silicon-wafer.png"
+                alt="Silicon Wafer"
+                fill
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+              <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)" }}>
+                Silicon Wafer
+              </span>
+              <span style={{ fontSize: 9, fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(255,255,255,0.2)" }}>
+                Semiconductor Innovation
+              </span>
+            </div>
+          </div>
+        )}
 
         {/* Divider */}
         <div
@@ -261,7 +303,7 @@ function AnimatedCard({
         >
           <p
             style={{
-              fontSize: 14,
+              fontSize: 13,
               lineHeight: 1.65,
               color: bodyColor,
               margin: 0,
@@ -273,22 +315,21 @@ function AnimatedCard({
           </p>
 
           {card.cta ? (
-            /* Orange + join button */
             <button
               style={{
                 flexShrink: 0,
                 width: 44,
                 height: 44,
                 borderRadius: "50%",
-                background: "#fc6500",
+                background: "#ffffff",
                 border: "none",
-                boxShadow: "0 0 22px rgba(252,101,0,0.7)",
+                boxShadow: "0 0 22px rgba(255,255,255,0.7)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 cursor: "pointer",
                 fontSize: 24,
-                color: "white",
+                color: "black",
                 fontWeight: "bold",
                 lineHeight: 1,
               }}
@@ -296,7 +337,6 @@ function AnimatedCard({
               +
             </button>
           ) : (
-            /* Arrow indicator */
             <div
               style={{
                 flexShrink: 0,
@@ -329,7 +369,7 @@ function AnimatedCard({
   );
 }
 
-// ─── Section label that fades in ──────────────────────────────────────────────
+// ─── Section label top-left ──────────────────────────────────────────────────
 function SectionLabel({ progress }: { progress: MotionValue<number> }) {
   const opacity = useTransform(progress, [0, 0.08, 0.92, 1.0], [0, 1, 1, 0]);
   return (
@@ -388,9 +428,9 @@ function SectionLabel({ progress }: { progress: MotionValue<number> }) {
             textAlign: "center",
           }}
         >
-          THIS COURSE
+          FUTURE SCHOOLS
           <br />
-          WILL BE USEFUL
+          DEEP TECH ECOSYSTEM
         </p>
       </div>
     </motion.div>
@@ -430,7 +470,7 @@ function CardIndicator({ progress }: { progress: MotionValue<number> }) {
             width: i === active ? 24 : 8,
             height: 8,
             borderRadius: 4,
-            background: i === active ? "#00e5ff" : "rgba(255,255,255,0.25)",
+            background: i === active ? "#ffffff" : "rgba(255,255,255,0.25)",
             transition: "all 0.3s ease",
           }}
         />
@@ -448,53 +488,28 @@ export default function BATarget() {
     offset: ["start start", "end end"],
   });
 
-  // Cyan dot travels from 8% to 88% vertically as you scroll
   const dotY = useTransform(scrollYProgress, [0, 1], ["8%", "88%"]);
 
   return (
     <section
       ref={containerRef}
+      id="future-schools"
       className="relative w-full"
       style={{ height: "500vh", background: "#000" }}
     >
       {/* ══════════════════════════════════════════════════
-          STICKY VIEWPORT — everything visible lives here
+          STICKY VIEWPORT
          ══════════════════════════════════════════════════ */}
       <div className="sticky top-0 w-full h-screen overflow-hidden">
 
-        {/* ── Background: rich red gradient ── */}
+        {/* Background */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(115deg, #c00000 0%, #5a0000 40%, #0a0000 75%, #000000 100%)",
+              "linear-gradient(115deg, #111111 0%, #0a0a0a 40%, #050505 75%, #000000 100%)",
           }}
         />
-
-        {/* ── Background: cinematic image masked to right side ── */}
-        <div
-          className="absolute inset-0"
-          style={{
-            maskImage:
-              "linear-gradient(to right, transparent 30%, black 60%)",
-            WebkitMaskImage:
-              "linear-gradient(to right, transparent 30%, black 60%)",
-          }}
-        >
-          <img
-            src="/hero_bg.png"
-            alt=""
-            className="w-full h-full object-cover object-bottom"
-            style={{ opacity: 0.65 }}
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(160deg, rgba(80,10,0,0.55) 0%, rgba(0,0,0,0.25) 100%)",
-            }}
-          />
-        </div>
 
         {/* ── Center dividing line ── */}
         <div
@@ -527,7 +542,7 @@ export default function BATarget() {
               margin: 0,
             }}
           >
-            WHO IS THIS FOR
+            FUTURE SCHOOLS / DEEP TECH ECOSYSTEM
           </p>
         </motion.div>
 
@@ -541,8 +556,8 @@ export default function BATarget() {
               width: 14,
               height: 14,
               borderRadius: "50%",
-              background: "#00e5ff",
-              boxShadow: "0 0 18px 6px rgba(0,229,255,0.7)",
+              background: "#ffffff",
+              boxShadow: "0 0 18px 6px rgba(255,255,255,0.7)",
             }}
           />
         </motion.div>

@@ -29,8 +29,8 @@ function BlackHoleScene({
     const col = new Float32Array(particleCount * 3);
     
     const colorWhite = new THREE.Color("#FFFFFF");
-    const colorOrange = new THREE.Color("#FF5A22"); 
-    const colorPurple = new THREE.Color("#7D6BFF"); 
+    const colorOrange = new THREE.Color("#888888"); 
+    const colorPurple = new THREE.Color("#555555"); 
 
     for (let i = 0; i < particleCount; i++) {
       const radius = 2 + Math.random() * 4; 
@@ -236,7 +236,7 @@ export default function Problem() {
   const targetX = useMotionValue(0);
   const targetY = useMotionValue(0);
 
-  const sentence = "Your intelligence is taken by institutions and used to train the next wave of AI models.";
+  const sentence = "Traditional institutions teach the history of technology. We are building the ecosystem that will create its future.";
   const words = sentence.split(" ");
   let globalLetterTracker = 0;
   const totalLetters = sentence.length;
@@ -248,7 +248,7 @@ export default function Problem() {
   const resolutionY = useTransform(smoothScroll, [0.92, 0.98], [20, 0]);
 
   return (
-    <section ref={containerRef} className="relative w-full h-[450vh] bg-black">
+    <section ref={containerRef} id="research" className="relative w-full h-[450vh] bg-black">
       
       {/* PINNED VIEWPORT */}
       <div className="sticky top-0 w-full h-screen overflow-hidden flex flex-col items-center justify-center">
@@ -272,7 +272,7 @@ export default function Problem() {
             <h2 className="heading-massive text-[6vw] md:text-[5vw] lg:text-[72px] leading-[1.1] text-white flex flex-wrap justify-center text-center">
               {words.map((word, wIdx) => {
                 const lowerWord = word.toLowerCase();
-                const isHighlight = lowerWord.includes("intelligence") || lowerWord.includes("institutions") || lowerWord.includes("ai");
+                const isHighlight = lowerWord.includes("ecosystem") || lowerWord.includes("institutions") || lowerWord.includes("future");
                 return (
                   <span 
                     key={wIdx} 
@@ -306,9 +306,8 @@ export default function Problem() {
             className="absolute inset-0 flex items-center justify-center p-6"
           >
             <h2 className="heading-massive text-[5vw] md:text-[4vw] lg:text-[56px] leading-[1.1] text-white text-center max-w-4xl">
-              Yet it often happens without any{" "}
-              <span style={{ color: "var(--red)" }}>earnings</span> or{" "}
-              <span style={{ color: "var(--red)" }}>credit</span>.
+              A research-driven ecosystem where students become{" "}
+              <span style={{ color: "white" }}>creators</span>.
             </h2>
           </motion.div>
 

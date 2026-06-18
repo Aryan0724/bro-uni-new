@@ -13,16 +13,23 @@
 
 /* ── CSS VARIABLES ─────────────────────────────────────────── */
 :root {
-  --bg-primary: #0d0d0d;
-  --bg-secondary: #0f0f0f;
-  --accent: #fc6500;
-  
+  /* Backgrounds */
+  --bg-primary: #000000;
+  --bg-secondary: #080808;
+  --bg-card: #0d0d0d;
+
+  /* Text */
   --text-primary: #ffffff;
-  --text-secondary: #a3a3a3;
-  --text-muted: #666666;
-  
-  --border: rgba(255, 255, 255, 0.1);
-  --border-hover: rgba(255, 255, 255, 0.2);
+  --text-secondary: #a0a0a0;
+  --text-muted: #555555;
+
+  /* Single accent — electric blue, used ONLY for primary CTAs */
+  --accent: #4F8EF7;
+  --accent-hover: #6BA5FF;
+
+  /* Borders */
+  --border: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.18);
 }
 
 /* ── RESET ─────────────────────────────────────────────────── */
@@ -45,14 +52,12 @@ body {
 }
 
 /* ── TYPOGRAPHY ────────────────────────────────────────────── */
-/* Display Font: Fallback to system Helvetica Neue for exact structure parity */
-.font-display { 
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
+.font-display {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .font-accent { font-family: var(--font-chakra), sans-serif; }
 .font-body { font-family: var(--font-inter), sans-serif; }
 
-/* Display Heading Sizes */
 .heading-massive {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 700;
@@ -100,14 +105,17 @@ body {
 
 /* ── UI COMPONENTS ─────────────────────────────────────────── */
 
+/* Primary CTA — electric blue, use sparingly */
 .btn-primary {
   background: var(--accent);
   color: #fff;
   border-radius: 9999px;
   padding: 16px 32px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 500;
-  font-size: 16px;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   border: none;
   cursor: pointer;
   transition: all 0.25s ease;
@@ -117,19 +125,23 @@ body {
 }
 
 .btn-primary:hover {
+  background: var(--accent-hover);
   transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(252, 101, 0, 0.25);
+  box-shadow: 0 8px 32px rgba(79, 142, 247, 0.25);
 }
 
+/* Secondary — white outline / ghost */
 .btn-secondary {
   background: transparent;
   color: var(--text-primary);
   border-radius: 9999px;
-  padding: 16px 32px;
+  padding: 14px 32px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
-  font-size: 16px;
-  border: 1px solid var(--border);
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1px solid var(--border-hover);
   cursor: pointer;
   transition: all 0.25s ease;
   display: inline-flex;
@@ -138,7 +150,32 @@ body {
 }
 
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+/* Filled white button — for contrast sections */
+.btn-white {
+  background: #ffffff;
+  color: #000000;
+  border-radius: 9999px;
+  padding: 16px 32px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-white:hover {
+  background: #e8e8e8;
+  transform: translateY(-2px);
 }
 
 /* Glass Navbar */
@@ -157,7 +194,7 @@ body {
 }
 
 .ba-navbar.scrolled {
-  background: rgba(13, 13, 13, 0.8);
+  background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
 }
@@ -187,19 +224,24 @@ body {
   border-color: var(--border-hover);
 }
 
-/* Section Radial Glow */
+/* Subtle white glow for premium highlights */
+.glow-white {
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.12);
+}
+
+/* Section radial glow — neutral white */
 .glow-effect {
   position: absolute;
   width: 50vw;
   height: 50vw;
-  background: radial-gradient(circle, rgba(252, 101, 0, 0.15) 0%, rgba(13, 13, 13, 0) 70%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.04) 0%, rgba(0, 0, 0, 0) 70%);
   pointer-events: none;
   z-index: 10;
   transform: translate(-50%, -50%);
 }
 
 /* SCROLLBAR */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: var(--bg-primary); }
-::-webkit-scrollbar-thumb { background: var(--text-muted); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: var(--text-secondary); }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #000; }
+::-webkit-scrollbar-thumb { background: #222; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #333; }

@@ -15,9 +15,9 @@ const chakraPetch = Chakra_Petch({
 });
 
 export const metadata: Metadata = {
-  title: "BRO University | Master AI, Neuroscience & Blockchain",
+  title: "BRO University | Master AI, Neuroscience & Semiconductors",
   description:
-    "Join a private next-generation education community offering premium expert-led sessions in AI, Neuroscience, and Blockchain. Expert instructors. Real outcomes.",
+    "India's next-generation deep tech university focused on Artificial Intelligence, Neuroscience, Semiconductors, Nanotechnology, and Future Innovation. A research-driven ecosystem where students become innovators.",
 };
 
 export default function RootLayout({

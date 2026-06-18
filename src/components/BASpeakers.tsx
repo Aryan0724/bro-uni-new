@@ -4,11 +4,11 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
 
-const speakers = [
-  { name: "DR. ELENA\nROSTOVA", role: "/Head of AI, Nexus", image: "/elena.png" },
-  { name: "MARCUS\nVANCE", role: "/Founder, Core Layer", image: "/marcus.png" },
-  { name: "SARAH\nCHEN", role: "/Lead Dev, ZK-Systems", image: "/sarah.png" },
-  { name: "JULIAN\nPIERCE", role: "/Neurologist, BrainCo", image: "/julian.png" },
+const researchers = [
+  { name: "DR. ELENA\nROSTOVA", role: "/Head of Neuroscience", image: "/elena.png" },
+  { name: "MARCUS\nVANCE", role: "/Director, AI Research", image: "/marcus.png" },
+  { name: "SARAH\nCHEN", role: "/Lead, Semiconductor Lab", image: "/sarah.png" },
+  { name: "JULIAN\nPIERCE", role: "/Neurologist & BCI Pioneer", image: "/julian.png" },
 ];
 
 export default function BASpeakers() {
@@ -16,98 +16,90 @@ export default function BASpeakers() {
 
   const scroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
-      const scrollAmount = 400;
       scrollRef.current.scrollBy({
-        left: direction === "left" ? -scrollAmount : scrollAmount,
+        left: direction === "left" ? -400 : 400,
         behavior: "smooth"
       });
     }
   };
 
   return (
-    <section className="bg-black relative overflow-hidden flex flex-col justify-center" style={{ minHeight: "100vh" }}>
+    <section className="bg-black relative overflow-hidden flex flex-col justify-center border-t border-white/5" style={{ minHeight: "100vh" }}>
       
-      {/* Header Section */}
+      {/* Header */}
       <div className="w-full px-8 md:px-12 pt-24 pb-16 flex flex-col md:flex-row justify-between items-start">
         
-        {/* Left Typography */}
-        <motion.h2 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          style={{
-            fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
-            fontSize: "clamp(40px, 5vw, 68px)",
-            fontWeight: 700,
-            color: "white",
-            letterSpacing: "-0.04em",
-            lineHeight: 1.05,
-            textTransform: "uppercase",
-            margin: 0,
-          }}
-        >
-          OUR ARCHITECTS<br />
-          COMBINE TECHNICAL<br />
-          EXPERTISE WITH REAL<br />
-          DECENTRALIZED PRACTICE.
-        </motion.h2>
-
-        {/* Right Navigation */}
-        <div className="flex flex-col items-end gap-16 mt-8 md:mt-0">
-          
-          {/* Arrows */}
-          <div className="flex gap-1">
-            <button 
-              onClick={() => scroll("left")}
-              className="w-14 h-14 bg-[#111111] hover:bg-[#1a1a1a] flex items-center justify-center transition-colors text-white"
-              aria-label="Scroll left"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M19 12H5M12 19l-7-7 7-7"/>
-              </svg>
-            </button>
-            <button 
-              onClick={() => scroll("right")}
-              className="w-14 h-14 bg-[#111111] hover:bg-[#1a1a1a] flex items-center justify-center transition-colors text-white"
-              aria-label="Scroll right"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </button>
-          </div>
-
+        <div className="flex flex-col gap-4">
+          <span className="text-[10px] font-body tracking-[0.25em] text-white/30 uppercase">/ Research Team</span>
+          <motion.h2 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            style={{
+              fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+              fontSize: "clamp(36px, 4.5vw, 62px)",
+              fontWeight: 700,
+              color: "white",
+              letterSpacing: "-0.04em",
+              lineHeight: 1.05,
+              textTransform: "uppercase",
+              margin: 0,
+            }}
+          >
+            OUR RESEARCH TEAM<br />
+            COMBINES WORLD-CLASS<br />
+            EXPERTISE WITH REAL<br />
+            DEEP TECH INNOVATION.
+          </motion.h2>
         </div>
+
+        {/* Arrows */}
+        <div className="flex gap-1 mt-8 md:mt-0">
+          <button 
+            onClick={() => scroll("left")}
+            className="w-14 h-14 bg-[#111] hover:bg-[#1a1a1a] flex items-center justify-center transition-colors text-white"
+            aria-label="Scroll left"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          </button>
+          <button 
+            onClick={() => scroll("right")}
+            className="w-14 h-14 bg-[#111] hover:bg-[#1a1a1a] flex items-center justify-center transition-colors text-white"
+            aria-label="Scroll right"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+
       </div>
 
-      {/* Slider Section */}
+      {/* Slider */}
       <div 
         ref={scrollRef}
         className="flex gap-6 overflow-x-auto px-8 md:px-12 pb-24 [&::-webkit-scrollbar]:hidden"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
-        {speakers.map((s, i) => (
+        {researchers.map((r, i) => (
           <div 
             key={i} 
             className="flex-shrink-0 bg-[#0c0c0c] p-6"
-            style={{ width: "min(420px, 85vw)" }}
+            style={{ width: "min(400px, 85vw)" }}
           >
             <div className="relative w-full aspect-square bg-[#1a1a1a] overflow-hidden">
               <Image 
-                src={s.image}
-                alt={s.name}
+                src={r.image}
+                alt={r.name}
                 fill
-                style={{ objectFit: "cover" }}
-                className="grayscale-[20%] hover:grayscale-0 hover:scale-[1.03] transition-all duration-700 ease-out"
+                style={{ objectFit: "cover", filter: "grayscale(30%)" }}
+                className="hover:grayscale-0 hover:scale-[1.03] transition-all duration-700 ease-out"
               />
               
-              {/* Text Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex items-end justify-between p-6 pointer-events-none">
                 <h3 
                   style={{
                     fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
-                    fontSize: 22,
+                    fontSize: 20,
                     fontWeight: 700,
                     color: "white",
                     letterSpacing: "-0.03em",
@@ -117,19 +109,19 @@ export default function BASpeakers() {
                     margin: 0
                   }}
                 >
-                  {s.name}
+                  {r.name}
                 </h3>
                 <span 
                   style={{
                     fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
-                    fontSize: 14,
+                    fontSize: 13,
                     fontWeight: 500,
-                    color: "white",
+                    color: "rgba(255,255,255,0.55)",
                     letterSpacing: "0.01em",
                     marginBottom: "2px"
                   }}
                 >
-                  {s.role}
+                  {r.role}
                 </span>
               </div>
             </div>

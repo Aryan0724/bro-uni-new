@@ -11,62 +11,62 @@ import { BroCharacter } from "./BroCharacter";
 const modules = [
   {
     id: "01",
-    title: "Neuro-Symbolic AI Foundations",
-    duration: "Week 1",
-    content: "Combining deep learning architectures with symbolic logic to create robust, interpretable AI systems.",
-    projects: "Build a symbolic parser integrated with a neural classification layer.",
-    outcomes: "Deep understanding of logic-driven reasoning inside deep neural networks.",
-    accentColor: "#FF5500",
+    title: "AI & Cognitive Systems",
+    duration: "Research Area",
+    content: "Merging deep learning with symbolic reasoning to build interpretable, robust AI systems that understand human cognitive patterns.",
+    projects: "Build a symbolic parser integrated with a neural classification layer for real-world healthcare data.",
+    outcomes: "Deep understanding of how intelligence — biological and artificial — can be modelled and extended.",
+    accentColor: "#ffffff",
     cameraLabel: "FRONTAL REVEAL",
   },
   {
     id: "02",
-    title: "Decentralized Compute Networks",
-    duration: "Week 2",
-    content: "Distribute massive AI training workloads across blockchain-based compute networks.",
-    projects: "Deploy a distributed trainer across a simulated testnet of compute nodes.",
-    outcomes: "Expertise in decentralized compute infrastructure and node security.",
-    accentColor: "#00e5ff",
+    title: "Brain-Computer Interfaces",
+    duration: "Research Area",
+    content: "Decoding neural signals and mapping brain activity to digital commands using advanced signal processing and transformer architectures.",
+    projects: "Build a real-time EEG classifier mapping motor imagery to device commands.",
+    outcomes: "Ability to design and deploy cognitive interface systems bridging human and machine intelligence.",
+    accentColor: "#888888",
     cameraLabel: "ORBITAL LEFT",
   },
   {
     id: "03",
-    title: "Brain-Computer Interface Basics",
-    duration: "Week 3",
-    content: "Signal processing for EEG data and mapping neural impulses to digital commands using transformers.",
-    projects: "Classify motor imagery using a spatial-temporal transformer.",
-    outcomes: "Ability to parse brainwave data and build cognitive interfaces.",
-    accentColor: "#FF5500",
+    title: "Semiconductor & Chip Design",
+    duration: "Research Area",
+    content: "Designing custom silicon architectures optimized for neural computation — from RTL design to full hardware simulation.",
+    projects: "Simulate a neuromorphic compute unit capable of processing spiking neural network workloads.",
+    outcomes: "Foundational knowledge in custom hardware design for AI-era computing.",
+    accentColor: "#ffffff",
     cameraLabel: "LOW ANGLE",
   },
   {
     id: "04",
-    title: "Smart Contracts for Autonomous Agents",
-    duration: "Week 4",
-    content: "Writing and deploying secure Solidity contracts for AI agents on Ethereum and L2 networks.",
-    projects: "Write an autonomous smart contract agent that evaluates price feeds dynamically.",
-    outcomes: "Mastery of ERC-6551 and multi-agent decentralized coordination.",
-    accentColor: "#ffcc00",
+    title: "Neuroinformatics",
+    duration: "Research Area",
+    content: "Applying computational methods to analyse, model, and interpret large-scale neural datasets for scientific and medical applications.",
+    projects: "Build a neural data pipeline that extracts biomarkers from fMRI imaging datasets.",
+    outcomes: "Expertise in neural data science at the intersection of medicine, neuroscience, and AI.",
+    accentColor: "#888888",
     cameraLabel: "DUTCH TILT",
   },
   {
     id: "05",
-    title: "Zero-Knowledge Machine Learning",
-    duration: "Week 5",
-    content: "Implementing ZK-SNARKs to prove AI model execution without revealing weights or training data.",
-    projects: "Generate a zk-SNARK proof of a PyTorch classifier's output using ezkl.",
-    outcomes: "Familiarity with cryptographic verifiability of neural model inference.",
-    accentColor: "#00e5ff",
+    title: "Neuropathic Pain Research",
+    duration: "Research Area",
+    content: "Using computational neuroscience to model chronic pain pathways, enabling the development of intelligent, data-driven treatments.",
+    projects: "Develop a pain biomarker classifier from multi-modal neural signal data.",
+    outcomes: "Understanding of how AI and neuroscience converge to advance human health outcomes.",
+    accentColor: "#aaaaaa",
     cameraLabel: "SIDE PROFILE",
   },
   {
     id: "06",
-    title: "Capstone Protocol Implementation",
-    duration: "Week 6",
-    content: "Final project: Build a fully functional decentralized AI agent using a brain-computer interface simulator.",
-    projects: "Implement an agent that receives brain signals, signs transactions, and trades on-chain.",
-    outcomes: "Deploy a fully functional autonomous brain-computer interfaced agent.",
-    accentColor: "#FF5500",
+    title: "Future Innovation Lab",
+    duration: "Research Area",
+    content: "Cross-disciplinary breakthrough research at the intersection of all BRO University domains — where the next 50 years of technology is designed.",
+    projects: "Design and pitch a novel deep tech innovation that integrates at least two research areas.",
+    outcomes: "Capacity to identify, frame, and lead breakthrough research initiatives at global scale.",
+    accentColor: "#ffffff",
     cameraLabel: "HERO REVEAL",
   },
 ];
@@ -151,11 +151,11 @@ function CinematicCamera({ progress }: { progress: MotionValue<number> }) {
 // Premium dramatic lighting: Deep shadows, sharp rim lights, subtle fills
 const LIGHT_CONFIGS = [
   { key: "#ffffff",  intensity: 6.0, pos: [2, 5, 3] },   // Mod 1 — crisp white key
-  { key: "#ff5500",  intensity: 7.0, pos: [3, 2, -4] },  // Mod 2 — fierce orange rim
+  { key: "#dddddd",  intensity: 5.5, pos: [3, 2, -4] },  // Mod 2 — cool silver rim
   { key: "#ffffff",  intensity: 6.5, pos: [-3, 2, 4] },  // Mod 3 — stark side light
-  { key: "#ff3300",  intensity: 8.0, pos: [4, -1, -2] }, // Mod 4 — dramatic under-rim
+  { key: "#aaaaaa",  intensity: 6.0, pos: [4, -1, -2] }, // Mod 4 — softer under-rim
   { key: "#ffffff",  intensity: 6.0, pos: [-4, 3, 1] },  // Mod 5 — clean profile
-  { key: "#ff5500",  intensity: 7.0, pos: [0, 5, -3] },  // Mod 6 — heroic back rim
+  { key: "#eeeeee",  intensity: 7.0, pos: [0, 5, -3] },  // Mod 6 — heroic back rim
 ];
 
 function DynamicLighting({ progress, spotlightRef }: {
@@ -465,16 +465,16 @@ export default function BAProgram() {
 
   if (isMobile) {
     return (
-      <section id="program" className="w-full py-20 px-6 bg-[#0c0c0c] relative font-body flex flex-col gap-10">
+      <section id="neuroscience-programs" className="w-full py-20 px-6 bg-[#0c0c0c] relative font-body flex flex-col gap-10">
         <div className="w-full flex flex-col">
-          <span className="font-accent text-[10px] font-bold text-[#FF5500] uppercase tracking-[0.2em] mb-2 block">
-            PROGRAM MODULES
+          <span className="font-accent text-[10px] font-bold text-white/50 uppercase tracking-[0.2em] mb-2 block">
+            RESEARCH AREAS
           </span>
           <h2 className="text-4xl leading-tight text-white font-display font-bold tracking-tight mb-4 uppercase">
-            STRUCTURED <br /> COGNITIVE <br /> <span className="text-neutral-500">LEARNING.</span>
+            NEUROSCIENCE <br /> PROGRAMS <br /> <span className="text-neutral-500">OVERVIEW.</span>
           </h2>
           <p className="font-body text-neutral-400 text-sm leading-relaxed max-w-sm">
-            A grueling 6-week curriculum designed to take you from foundational theories to shipping production-ready decentralized intelligence.
+            Academic research pathways in Neuroscience, Brain-Computer Interfaces, Neuroinformatics, and AI Healthcare Systems.
           </p>
         </div>
         {mounted && (
@@ -489,13 +489,13 @@ export default function BAProgram() {
         )}
         <div className="flex flex-col gap-6 mt-4">
           {modules.map((mod) => (
-            <div key={mod.id} className="bg-[#0a0a0a] border border-white/5 rounded-2xl p-6 flex flex-col gap-4">
+            <div key={mod.id} className="bg-[#080808] border border-white/6 rounded-2xl p-6 flex flex-col gap-4">
               <div className="flex justify-between items-start">
-                <span style={{ color: mod.accentColor }} className="text-2xl font-bold">[{mod.id}]</span>
-                <span className="px-2 py-0.5 border border-neutral-800 rounded text-[10px] font-bold text-neutral-400 uppercase tracking-widest">{mod.duration}</span>
+                <span className="text-2xl font-bold text-white/60">[{mod.id}]</span>
+                <span className="px-2 py-0.5 border border-neutral-800 rounded text-[10px] font-bold text-neutral-500 uppercase tracking-widest">{mod.duration}</span>
               </div>
               <h3 className="font-display font-bold text-xl text-white tracking-tight leading-snug">{mod.title}</h3>
-              <p className="font-body text-neutral-400 text-xs leading-relaxed">{mod.content}</p>
+              <p className="font-body text-neutral-500 text-xs leading-relaxed">{mod.content}</p>
             </div>
           ))}
         </div>
@@ -506,7 +506,7 @@ export default function BAProgram() {
   return (
     <section
       ref={containerRef}
-      id="program"
+      id="neuroscience-programs"
       className="relative w-full bg-[#080808]"
       style={{ height: "700vh" }}
     >
@@ -541,8 +541,8 @@ export default function BAProgram() {
               {/* Moody undertone */}
               <directionalLight
                 position={[-5, -5, -5]}
-                intensity={0.15}
-                color="#ff5500"
+                intensity={0.1}
+                color="#888888"
               />
               {/* Dynamic dramatic rim/key light */}
               <spotLight
@@ -575,15 +575,15 @@ export default function BAProgram() {
                   style={{
                     fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
                     fontSize: 10,
-                    fontWeight: 800,
+                    fontWeight: 700,
                     letterSpacing: "0.22em",
                     textTransform: "uppercase",
-                    color: "#FF5500",
+                    color: "rgba(255,255,255,0.4)",
                     marginBottom: 16,
                     display: "block",
                   }}
                 >
-                  PROGRAM MODULES
+                   NEUROSCIENCE PROGRAMS
                 </span>
                 <h2
                   style={{
@@ -597,8 +597,8 @@ export default function BAProgram() {
                     margin: 0,
                   }}
                 >
-                  STRUCTURED<br />COGNITIVE<br />
-                  <span style={{ color: "rgba(255,255,255,0.3)" }}>LEARNING.</span>
+                  NEUROSCIENCE<br />PROGRAMS<br />
+                   <span style={{ color: "rgba(255,255,255,0.3)" }}>OVERVIEW.</span>
                 </h2>
                 <p
                   style={{
@@ -610,31 +610,16 @@ export default function BAProgram() {
                     maxWidth: 280,
                   }}
                 >
-                  A grueling 6-week curriculum designed to take you from foundational theories to shipping production-ready decentralized intelligence.
+                   Academic research pathways in Neuroscience, Brain-Computer Interfaces, Neuroinformatics, and AI Healthcare Systems.
                 </p>
               </div>
 
               {/* Download button */}
               <button
-                className="pointer-events-auto"
-                style={{
-                  background: "#FF5500",
-                  color: "white",
-                  fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
-                  fontSize: 11,
-                  fontWeight: 800,
-                  letterSpacing: "0.18em",
-                  textTransform: "uppercase",
-                  padding: "16px 28px",
-                  borderRadius: 10,
-                  border: "none",
-                  cursor: "pointer",
-                  boxShadow: "0 4px 24px rgba(255,85,0,0.4)",
-                  alignSelf: "flex-start",
-                  transition: "all 0.2s ease",
-                }}
+                className="btn-white pointer-events-auto"
+                style={{ alignSelf: "flex-start" }}
               >
-                DOWNLOAD SYLLABUS
+                EXPLORE RESEARCH →
               </button>
             </motion.div>
           </div>
@@ -661,7 +646,7 @@ export default function BAProgram() {
           className="absolute bottom-10 left-14 z-30 pointer-events-none"
         >
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#FF5500" }} />
+            <div style={{ width: 5, height: 5, borderRadius: "50%", background: "rgba(255,255,255,0.4)" }} />
             <span
               style={{
                 fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
@@ -672,7 +657,7 @@ export default function BAProgram() {
                 color: "rgba(255,255,255,0.35)",
               }}
             >
-              SCROLL TO EXPLORE MODULES
+              SCROLL TO EXPLORE RESEARCH
             </span>
           </div>
         </motion.div>

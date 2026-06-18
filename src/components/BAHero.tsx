@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import Image from 'next/image';
 import { motion, Variants } from 'framer-motion';
 
 export default function BAHero() {
@@ -14,90 +15,131 @@ export default function BAHero() {
   };
 
   return (
-    <section className="relative w-full max-w-[100vw] h-screen bg-black text-white overflow-hidden flex flex-col font-body">
+    <section id="hero" className="relative w-full max-w-[100vw] h-screen bg-black text-white overflow-hidden flex flex-col font-body">
       
-      {/* Background Image: Absolute exact reference image */}
+      {/* Background — pure black + neural SVG overlay */}
       <div className="absolute inset-0 z-0">
-        <img 
-          src="/hero_bg.png" 
-          alt="Glowing horizon" 
-          className="w-full h-full object-cover object-bottom"
+        {/* Subtle radial center glow */}
+        <div 
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: "radial-gradient(ellipse 70% 55% at 65% 50%, rgba(255,255,255,0.04) 0%, transparent 70%)"
+          }}
         />
-        {/* Very subtle gradient overlay just to ensure text readability at the very top/bottom if needed, but keeping it light so it doesn't dim the text */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40 pointer-events-none" />
+        {/* Neural network SVG — right side, subtle */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            maskImage: "linear-gradient(to left, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, transparent 80%)",
+            WebkitMaskImage: "linear-gradient(to left, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, transparent 80%)",
+          }}
+        >
+          <Image
+            src="/neural-bg.svg"
+            alt=""
+            fill
+            className="object-cover object-right"
+            style={{ opacity: 0.5 }}
+            priority
+          />
+        </div>
+        {/* Bottom vignette */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/60 pointer-events-none" />
+        {/* Fine grid texture */}
+        <div
+          className="absolute inset-0 pointer-events-none opacity-[0.025]"
+          style={{
+            backgroundImage: "linear-gradient(to right, #fff 1px, transparent 1px), linear-gradient(to bottom, #fff 1px, transparent 1px)",
+            backgroundSize: "60px 60px"
+          }}
+        />
       </div>
 
-      {/* Main Content Container (z-10 to stay above background) */}
+      {/* Main Content */}
       <div className="relative z-10 w-full h-full flex flex-col justify-between pt-6 md:pt-10 pb-12 px-6 md:px-12">
         
-        {/* TOP SECTION: Massive Title and Tags */}
+        {/* TOP: Logo + Brand Title */}
         <motion.div 
           initial="hidden"
           animate="visible"
           variants={revealVariant}
-          className="w-full flex flex-col max-w-full"
+          className="w-full flex flex-col items-center"
         >
-          {/* Sized to guarantee it never blows out the 100vw container */}
-          <h1 className="w-full text-center font-accent font-medium tracking-tighter leading-[0.8] text-[13vw] md:text-[9.5vw] text-white whitespace-nowrap overflow-hidden">
+          {/* BRO University Logo mark — inverted to white */}
+          <div className="mb-4 flex items-center justify-center">
+            <Image
+              src="/bro-logo.png"
+              alt="BRO University"
+              width={72}
+              height={72}
+              style={{ filter: "invert(1)", opacity: 0.85 }}
+              priority
+            />
+          </div>
+          <h1 
+            className="w-full text-center font-accent font-black tracking-tighter leading-[0.82] text-[12vw] md:text-[9vw] text-white whitespace-nowrap overflow-hidden"
+            style={{ letterSpacing: "-0.04em" }}
+          >
             BRO UNIVERSITY
           </h1>
           
-          {/* Tags perfectly aligned, mixed case, standard font */}
-          <div className="w-full flex justify-between items-start mt-4 md:mt-6 text-[9px] md:text-[12px] font-body tracking-normal text-white px-1 md:px-2">
-            <div>/ START: August 21, 12:00</div>
-            <div>/ Duration: 6 weeks</div>
-            <div>/ Expert-led sessions</div>
+          {/* Subline row */}
+          <div className="w-full flex justify-between items-start mt-5 md:mt-6 text-[9px] md:text-[11px] font-body tracking-[0.18em] uppercase text-white/35 px-1">
+            <div>/ Race Up Your Brain</div>
+            <div>/ Deep Tech Education</div>
+            <div>/ Est. 2025 · India</div>
           </div>
         </motion.div>
         
-        {/* BOTTOM SECTION: Course Title, Avatars, and CTA */}
-        <div className="w-full flex flex-col md:flex-row justify-between items-end gap-6 md:gap-10 max-w-full">
+        {/* BOTTOM: Headline and CTAs */}
+        <div className="w-full flex flex-col md:flex-row justify-between items-end gap-6 md:gap-10">
           
-          {/* Bottom Left: Title & Avatars */}
+          {/* Left: Content */}
           <motion.div 
             initial="hidden"
             animate="visible"
             variants={revealVariant}
-            className="flex flex-col gap-4 md:gap-6 max-w-xl"
+            className="flex flex-col gap-5 max-w-xl"
           >
-            {/* Standard display font, white, uppercase, accurately scaled */}
-            <h2 className="text-[18px] md:text-[22px] font-display font-normal leading-[1.15] text-white tracking-wide uppercase">
-              ONLINE COURSE ON<br />
-              COGNITIVE AI &amp;<br />
-              NEUROSCIENCE
+            <h2 className="text-[26px] md:text-[32px] font-display font-bold leading-[1.15] text-white tracking-tight uppercase">
+              HEY BRO, READY TO<br />BUILD THE FUTURE?
             </h2>
-            
-            <div className="flex items-center gap-3">
-              <div className="flex -space-x-2">
-                {/* Scaled down avatars */}
-                <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-neutral-600 border border-black/20 shadow-sm z-30" />
-                <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-neutral-500 border border-black/20 shadow-sm z-20" />
-                <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-neutral-400 border border-black/20 shadow-sm z-10" />
-              </div>
-              <p className="text-[10px] md:text-[11px] leading-snug text-white/80 font-body">
-                120+ students successfully<br/>completed the training
-              </p>
+
+            <p className="text-[13px] md:text-[14px] font-body text-white/55 leading-relaxed max-w-md">
+              India&apos;s next-generation deep tech university focused on Artificial Intelligence, Neuroscience, Semiconductors, Nanotechnology, and Future Innovation.
+            </p>
+
+            <p className="text-[12px] font-body text-white/35 leading-relaxed max-w-sm border-l border-white/15 pl-4">
+              Not another traditional university. A research-driven ecosystem where students become innovators, scientists, founders, and creators of future technologies.
+            </p>
+
+            <div className="flex items-center gap-4 mt-1">
+              <button className="btn-primary" style={{ padding: "14px 28px", fontSize: "12px" }}>
+                Join Early Access
+              </button>
+              <button className="btn-secondary" style={{ padding: "13px 28px", fontSize: "12px" }}>
+                Explore Vision
+              </button>
             </div>
           </motion.div>
 
-          {/* Bottom Right: CTA Button */}
+          {/* Right: Scroll indicator + domain pills */}
           <motion.div 
             initial="hidden"
             animate="visible"
             variants={revealVariant}
-            className="shrink-0 relative z-20 pb-2 md:pb-0"
+            className="shrink-0 hidden md:flex flex-col items-end gap-5 pb-2"
           >
-            {/* Perfectly proportioned mini-card CTA, absolute positioned to guarantee no flex blowout */}
-            <button className="relative block w-[200px] h-[68px] md:w-[240px] md:h-[78px] bg-white hover:bg-black group border border-transparent hover:border-white/20 transition-colors duration-300 rounded-[14px] md:rounded-[18px] overflow-hidden shadow-2xl">
-              <span className="absolute bottom-4 left-4 md:bottom-5 md:left-5 font-body font-semibold text-[11px] md:text-[13px] tracking-wide uppercase text-black group-hover:text-white transition-colors duration-300 z-10 whitespace-nowrap text-left">
-                BUY THE COURSE
-              </span>
-              <div className="absolute bottom-3 right-3 md:bottom-4 md:right-4 w-7 h-7 md:w-9 md:h-9 rounded-full bg-black text-white group-hover:bg-white group-hover:text-black flex items-center justify-center transition-colors duration-300 z-10">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 5V19M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </div>
-            </button>
+            {/* Domain tags */}
+            <div className="flex flex-col items-end gap-1.5">
+              {["Artificial Intelligence", "Neuroscience", "Semiconductors", "Nanotechnology"].map((domain) => (
+                <span key={domain} className="text-[9px] font-body tracking-[0.18em] text-white/25 uppercase">
+                  {domain}
+                </span>
+              ))}
+            </div>
+            <div className="text-[9px] tracking-[0.28em] text-white/25 uppercase font-body">Scroll to explore</div>
+            <div className="w-[1px] h-14 bg-gradient-to-b from-white/25 to-transparent" />
           </motion.div>
 
         </div>

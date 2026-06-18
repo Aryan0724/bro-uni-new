@@ -1,118 +1,88 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
-
-const headerVariant: Variants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const }
-  }
-};
-
-const cardVariant: Variants = {
-  hidden: { opacity: 0, y: 100 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as const }
-  }
-};
+import { motion } from "framer-motion";
 
 const faqs = [
   {
     id: "001",
-    question: "Do I need prior experience in AI or Blockchain?",
-    answer: "A basic understanding of programming (Python/JS) is highly recommended. However, we provide primer materials for the specific cognitive and cryptographic concepts before the cohort begins."
+    question: "Who is BRO University for?",
+    answer: "BRO University is built for curious, driven individuals who want to work at the frontier of deep technology — whether you are a student, researcher, creator, or professional looking to pivot into the future of AI, Neuroscience, Semiconductors, or Nanotechnology."
   },
   {
     id: "002",
-    question: "What is the time commitment?",
-    answer: "Expect to spend 10-15 hours per week. This includes 4 hours of live lectures, and 6-10 hours of practical implementation, reading, and peer review."
+    question: "Is BRO University a recognized institution?",
+    answer: "BRO University is currently in its founding phase — being designed, built, and structured from the ground up. We are working toward full institutional recognition. Early supporters will be part of the founding cohort and shape the university's direction."
   },
   {
     id: "003",
-    question: "Will the live sessions be recorded?",
-    answer: "Yes, all sessions are recorded and made available immediately after the lecture for you to review at your own pace."
+    question: "What makes BRO University different from traditional universities?",
+    answer: "Traditional universities teach theory about technologies that already exist. BRO University is designed around technologies that will define the next 50 years — with research happening from day one, student ventures, live labs, and global collaboration baked into the structure."
   },
   {
     id: "004",
-    question: "Is there a refund policy?",
-    answer: "We offer a full refund if you decide the program isn't right for you within the first 7 days of the cohort starting, no questions asked."
+    question: "What is the HEY BRO community?",
+    answer: "HEY BRO is the innovation community surrounding BRO University — open to students, researchers, creators, and dreamers. It is the movement behind the institution, a place where the future of humanity's technology is being discussed, built, and launched."
   },
   {
     id: "005",
-    question: "Do you offer scholarships or student discounts?",
-    answer: "We have a limited number of need-based scholarships for outstanding candidates. Please email us directly to apply."
+    question: "How can I partner with or invest in BRO University?",
+    answer: "We welcome strategic partnerships with research institutions, deep tech companies, investors, and governments. Please reach out to us directly at brouniversity@gmail.com with your proposal and we will respond promptly."
   }
 ];
 
 export default function BAFAQ() {
   return (
-    <section className="pt-32 pb-[20vh] bg-[var(--bg-primary)] relative border-b border-[var(--border)] overflow-visible">
-      <div className="container-inner max-w-5xl mx-auto px-4 md:px-0">
+    <section id="faqs" className="pt-32 pb-[20vh] bg-black relative border-b border-white/5 overflow-visible">
+      <div className="max-w-5xl mx-auto px-4 md:px-0">
         
-        <div className="text-center mb-24 sticky top-24 z-0">
-          <motion.h2 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={headerVariant} 
-            className="heading-section"
-          >
-            FREQUENTLY ASKED <span className="text-[var(--accent)]">QUESTIONS.</span>
-          </motion.h2>
+        <div className="text-center mb-24">
+          <span className="text-[10px] font-body tracking-[0.25em] text-white/30 uppercase block mb-5">/ Frequently Asked</span>
+          <h2 className="font-display font-bold text-5xl md:text-7xl text-white leading-[1.05] tracking-tight uppercase">
+            QUESTIONS <span className="text-white/25">ANSWERED.</span>
+          </h2>
         </div>
 
         <div className="flex flex-col relative z-10 pb-[20vh]">
-          {faqs.map((faq, index) => {
-            // All cards stick at the EXACT SAME position so they completely overlap
-            // the previous card, leaving only ONE card visible at a time.
-            // Pushed offset down to 220 to prevent overlapping the "FREQUENTLY ASKED QUESTIONS" header
-            const offset = 220; 
+          {faqs.map((faq, idx) => {
+            const offset = 200 + idx * 10;
 
             return (
               <motion.div
                 key={faq.id}
-                initial="hidden"
-                whileInView="visible"
+                initial={{ opacity: 0, y: 100 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
-                variants={cardVariant}
-                className="sticky shadow-[0_-20px_50px_rgba(0,0,0,0.8)]"
+                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                className="sticky shadow-[0_-20px_50px_rgba(0,0,0,0.9)]"
                 style={{ top: `${offset}px` }}
               >
                 <div 
-                  className="bg-[#080808] border border-gray-800/50 rounded-[2.5rem] w-full p-10 md:p-16 mb-[50vh] min-h-[45vh] flex flex-col justify-center relative overflow-hidden backdrop-blur-2xl"
-                  style={{ transform: "translateZ(0)" }} // Force GPU acceleration
+                  className="bg-[#080808] border border-white/6 rounded-[2.5rem] w-full p-10 md:p-16 mb-[50vh] min-h-[45vh] flex flex-col justify-center relative overflow-hidden"
+                  style={{ transform: "translateZ(0)" }}
                 >
-                  {/* Futuristic Inner Radial Glow */}
-                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(252,101,0,0.08)_0%,transparent_60%)] pointer-events-none"></div>
+                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(255,255,255,0.04)_0%,transparent_60%)] pointer-events-none" />
+                  <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/12 to-transparent" />
 
-                  {/* Glowing Top Edge Accent */}
-                  <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent opacity-40"></div>
-
-                  {/* Giant ambient outline number in the background for futuristic depth */}
                   <div 
                     className="absolute -right-8 -bottom-16 text-[280px] font-accent font-black text-transparent pointer-events-none select-none leading-none"
-                    style={{ WebkitTextStroke: "2px rgba(255,255,255,0.04)" }}
+                    style={{ WebkitTextStroke: "1.5px rgba(255,255,255,0.025)" }}
                   >
                     {faq.id}
                   </div>
 
                   <div className="relative z-10 flex flex-col md:flex-row gap-8 md:gap-16 items-start">
                     <div className="shrink-0 pt-2">
-                      <span className="font-accent text-[var(--accent)] text-xl md:text-3xl font-bold tracking-widest drop-shadow-[0_0_15px_rgba(252,101,0,0.5)]">
+                      <span className="font-accent text-white/20 text-2xl md:text-3xl font-bold tracking-widest">
                         {faq.id}
                       </span>
                     </div>
                     
                     <div className="flex flex-col gap-6">
-                      <h3 className="font-sans font-bold text-3xl md:text-5xl text-white tracking-tight leading-[1.1] drop-shadow-md">
+                      <h3 className="font-display font-bold text-2xl md:text-4xl text-white tracking-tight leading-[1.15]">
                         {faq.question}
                       </h3>
-                      <div className="w-16 h-[3px] bg-[var(--accent)] my-2 shadow-[0_0_10px_rgba(252,101,0,0.8)]"></div>
-                      <p className="font-body text-lg md:text-2xl text-gray-400 leading-relaxed max-w-4xl">
+                      <div className="w-10 h-[1.5px] bg-white/15" />
+                      <p className="font-body text-lg md:text-xl text-white/35 leading-relaxed max-w-3xl">
                         {faq.answer}
                       </p>
                     </div>

@@ -2,78 +2,142 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Microscope, Zap, Factory, Globe, LucideIcon } from "lucide-react";
 
-const rows = [
-  { icon: Microscope, title: "Research First", desc: "Labs run the curriculum — not administrators." },
-  { icon: Zap, title: "Future Degrees", desc: "Neural interfaces, cognitive silicon." },
-  { icon: Factory, title: "Student Ventures", desc: "VC fund backs student startups." },
-  { icon: Globe, title: "Global Network", desc: "Fabs in Taiwan. Labs in Switzerland." },
+const cards = [
+  { 
+    id: "01",
+    title: "Research From Day One", 
+    desc: "Students won't just study technology — they will build it. Every program is anchored to active research projects, real labs, and published innovation.",
+    tag: "Core Principle",
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.35 }}>
+        <circle cx="11" cy="11" r="8"/>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        <line x1="11" y1="8" x2="11" y2="14"/>
+        <line x1="8" y1="11" x2="14" y2="11"/>
+      </svg>
+    )
+  },
+  { 
+    id: "02",
+    title: "Future-Focused Programs", 
+    desc: "Designed around industries that will dominate the world economy for the next 50 years — AI, Neuroscience, Semiconductors, and Nanotechnology.",
+    tag: "Ecosystem",
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.35 }}>
+        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+      </svg>
+    )
+  },
+  { 
+    id: "03",
+    title: "Innovation Ecosystem", 
+    desc: "Labs, startups, patents, research publications, and global collaboration — all under one roof. Students graduate as creators, not just degree holders.",
+    tag: "Infrastructure",
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.35 }}>
+        <circle cx="12" cy="12" r="2"/>
+        <path d="M4.93 4.93l4.24 4.24"/>
+        <path d="M14.83 14.83l4.24 4.24"/>
+        <path d="M4.93 19.07l4.24-4.24"/>
+        <path d="M14.83 9.17l4.24-4.24"/>
+      </svg>
+    )
+  },
+  { 
+    id: "04",
+    title: "Investor-Ready Vision", 
+    desc: "A scalable deep-tech education ecosystem with global potential. Built for the next generation of scientists, founders, and technology leaders.",
+    tag: "Scale",
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.35 }}>
+        <line x1="12" y1="20" x2="12" y2="10"/>
+        <line x1="18" y1="20" x2="18" y2="4"/>
+        <line x1="6" y1="20" x2="6" y2="16"/>
+      </svg>
+    )
+  },
 ];
 
-function AnimatedCard({ r }: { r: { icon: LucideIcon, title: string, desc: string } }) {
+function AnimatedCard({ card }: { card: typeof cards[0] }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["0 1", "1.2 1"],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], [150, 0]);
-  const rotateX = useTransform(scrollYProgress, [0, 1], [30, 0]);
-  const scale = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 0.5, 1]);
+  const y = useTransform(scrollYProgress, [0, 1], [80, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 0.6, 1]);
 
   return (
     <motion.div
       ref={ref}
-      style={{
-        y,
-        rotateX,
-        scale,
-        opacity,
-        transformPerspective: 1200,
-        backgroundColor: "var(--nvg-orange)",
-        padding: "3rem",
-      }}
-      className="border-[6px] border-black rounded-[32px] flex flex-col items-start hover:-translate-y-4 hover:shadow-[12px_16px_0_0_#000] transition-all duration-300 overflow-hidden relative"
+      style={{ y, opacity }}
+      className="bg-[#0a0a0a] border border-white/7 rounded-2xl p-8 md:p-10 flex flex-col gap-6 hover:border-white/15 transition-colors duration-500 group"
     >
-      <div className="mb-8 bg-white border-4 border-black w-24 h-24 rounded-2xl flex items-center justify-center shrink-0">
-        <r.icon size={48} strokeWidth={2.5} color="#000" />
+      <div className="flex items-start justify-between">
+        <span className="font-accent text-5xl font-black text-white/8 leading-none group-hover:text-white/12 transition-colors duration-500">{card.id}</span>
+        <div className="flex items-center gap-3">
+          <span className="text-white/30 group-hover:text-white/50 transition-colors duration-500">{card.icon}</span>
+          <span className="text-[10px] font-body tracking-[0.18em] uppercase text-white/25 border border-white/10 px-3 py-1 rounded-full">{card.tag}</span>
+        </div>
       </div>
-      <h3 className="font-sans font-black text-3xl mb-4 leading-none">{r.title}</h3>
-      <p className="font-bold text-lg opacity-90 leading-tight max-w-[90%]">{r.desc}</p>
+      <div className="flex flex-col gap-3">
+        <h3 className="font-display font-bold text-2xl md:text-3xl text-white leading-tight tracking-tight">
+          {card.title}
+        </h3>
+        <div className="w-8 h-[1.5px] bg-white/15 group-hover:bg-white/30 transition-colors duration-500" />
+        <p className="font-body text-white/45 text-[14px] leading-relaxed">
+          {card.desc}
+        </p>
+      </div>
     </motion.div>
   );
 }
 
 export default function WhyBro() {
   return (
-    <section className="w-full py-32 px-6 bg-[var(--nvg-orange)] text-[var(--text-dark)] flex flex-col items-center select-none overflow-hidden">
-      
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-10%" }}
-        transition={{ duration: 0.6 }}
-        className="text-center mb-24"
-      >
-        <span className="inline-block px-4 py-1 border-2 border-black rounded-full font-black text-xs uppercase mb-8 tracking-wide">
-          1. Introduction
-        </span>
-        <h2 className="heading-massive text-[10vw] md:text-[8vw] lg:text-[120px] leading-[0.95] mb-8">
-          Meet the <br/> Navigators
-        </h2>
-        <p className="font-bold max-w-sm mx-auto text-center leading-snug text-lg">
-          Empowered digital avatars designed to represent you.
-        </p>
-      </motion.div>
+    <section id="why-bro" className="w-full py-32 px-6 bg-black border-t border-white/5 overflow-hidden">
+      <div className="max-w-7xl mx-auto flex flex-col gap-20">
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl" style={{ perspective: "1500px" }}>
-        {rows.map((r, i) => (
-          <AnimatedCard key={i} r={r} />
-        ))}
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-10%" }}
+          transition={{ duration: 0.7 }}
+          className="flex flex-col md:flex-row gap-8 md:gap-20 items-start"
+        >
+          <div className="flex-1">
+            <span className="text-[10px] font-body tracking-[0.25em] text-white/30 uppercase mb-4 block">/ Why BRO University</span>
+            <h2 className="font-display font-bold text-5xl md:text-7xl text-white leading-[1.05] tracking-tight uppercase">
+              BUILT FOR<br /><span className="text-white/30">FUTURE</span><br />LEADERS.
+            </h2>
+          </div>
+          <div className="flex-1 max-w-md pt-2">
+            <p className="font-body text-white/45 text-[15px] leading-relaxed mt-8 md:mt-16">
+              Four pillars that separate BRO University from every traditional institution on the planet. We don&apos;t teach history — we build the future.
+            </p>
+            {/* Subtle circuit trace decoration */}
+            <div className="mt-8 flex items-center gap-2 text-white/15">
+              <div className="w-2 h-2 rounded-full border border-white/20" />
+              <div className="h-[1px] w-12 bg-white/10" />
+              <div className="w-1.5 h-1.5 rounded-full bg-white/15" />
+              <div className="h-[1px] w-8 bg-white/10" />
+              <div className="w-2 h-2 rounded-full border border-white/20" />
+              <div className="h-[1px] flex-1 bg-white/5" />
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4" style={{ perspective: "1500px" }}>
+          {cards.map((card) => (
+            <AnimatedCard key={card.id} card={card} />
+          ))}
+        </div>
+
       </div>
-
     </section>
   );
 }
