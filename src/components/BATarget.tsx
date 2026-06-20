@@ -16,6 +16,7 @@ const CARDS = [
     fromRight: true,
     clip: "polygon(0 0, 100% 0, 100% 100%, 44px 100%, 0 calc(100% - 44px))",
     hasWafer: false,
+    cta: false,
   },
   {
     id: "c2",
@@ -27,6 +28,7 @@ const CARDS = [
     fromRight: false,
     clip: "polygon(0 0, 100% 0, 100% 100%, 100% 100%, 44px 100%, 0 calc(100% - 44px))",
     hasWafer: false,
+    cta: false,
   },
   {
     id: "c3",
@@ -38,6 +40,7 @@ const CARDS = [
     fromRight: true,
     clip: "polygon(44px 0, 100% 0, 100% 100%, 0 100%, 0 44px)",
     hasWafer: true,
+    cta: false,
   },
   {
     id: "c4",
@@ -47,9 +50,9 @@ const CARDS = [
     body: "Nanotechnology, advanced computing, research startups, robotics, deep tech ventures, and future innovation labs.",
     white: false,
     fromRight: false,
-    cta: true,
     clip: "polygon(0 0, 100% 0, 100% calc(100% - 44px), calc(100% - 44px) 100%, 0 100%)",
     hasWafer: false,
+    cta: true,
   },
 ];
 
@@ -163,208 +166,208 @@ function AnimatedCard({
         </p>
       </motion.div>
 
-    <motion.div
-      style={{
-        position: "absolute",
-        top: "50%",
-        y: "-50%",
-        width: "min(420px, 44vw)",
-        ...side,
-        x,
-        opacity,
-        scale,
-        zIndex: 20,
-      }}
-    >
-      <div
+      <motion.div
         style={{
-          background: bg,
-          clipPath: card.clip,
-          padding: "36px 36px 32px",
-          position: "relative",
-          minHeight: card.hasWafer ? 300 : 260,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          gap: 16,
-          boxShadow: card.white
-            ? "0 20px 60px rgba(0,0,0,0.45)"
-            : "0 20px 60px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.06)",
+          position: "absolute",
+          top: "50%",
+          y: "-50%",
+          width: "min(420px, 44vw)",
+          ...side,
+          x,
+          opacity,
+          scale,
+          zIndex: 20,
         }}
       >
-        {/* Big number watermark */}
-        <span
-          style={{
-            position: "absolute",
-            top: 12,
-            right: 20,
-            fontSize: 80,
-            fontWeight: 900,
-            fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
-            color: numColor,
-            lineHeight: 1,
-            userSelect: "none",
-            letterSpacing: "-0.05em",
-          }}
-        >
-          {card.num}
-        </span>
-
-        {/* Corner accent */}
         <div
           style={{
-            position: "absolute",
-            top: 16,
-            left: 16,
-            width: 18,
-            height: 18,
-            borderLeft: card.white
-              ? "2px solid rgba(0,0,0,0.25)"
-              : "2px solid rgba(255,255,255,0.3)",
-            borderTop: card.white
-              ? "2px solid rgba(0,0,0,0.25)"
-              : "2px solid rgba(255,255,255,0.3)",
-          }}
-        />
-
-        {/* Title + subtitle */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 4, paddingTop: 8 }}>
-          <h3
-            style={{
-              fontFamily:
-                '"Helvetica Neue", "HelveticaNeueCyr Medium", Helvetica, Arial, sans-serif',
-              fontSize: "clamp(22px, 2.5vw, 32px)",
-              fontWeight: 700,
-              color: titleColor,
-              textTransform: "uppercase",
-              letterSpacing: "-0.03em",
-              lineHeight: 1.05,
-              margin: 0,
-              whiteSpace: "pre-line",
-            }}
-          >
-            {card.title}
-          </h3>
-          <p
-            style={{
-              fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
-              fontSize: 10,
-              fontWeight: 600,
-              letterSpacing: "0.18em",
-              textTransform: "uppercase",
-              color: subtitleColor,
-              margin: 0,
-            }}
-          >
-            {card.subtitle}
-          </p>
-        </div>
-
-        {/* Silicon Wafer visual for card 03 */}
-        {card.hasWafer && (
-          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-            <div style={{ position: "relative", width: 72, height: 72, borderRadius: "50%", overflow: "hidden", flexShrink: 0 }}>
-              <Image
-                src="/silicon-wafer.png"
-                alt="Silicon Wafer"
-                fill
-                style={{ objectFit: "cover" }}
-              />
-            </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-              <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)" }}>
-                Silicon Wafer
-              </span>
-              <span style={{ fontSize: 9, fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(255,255,255,0.2)" }}>
-                Semiconductor Innovation
-              </span>
-            </div>
-          </div>
-        )}
-
-        {/* Divider */}
-        <div
-          style={{
-            height: 1,
-            background: card.white
-              ? "rgba(0,0,0,0.12)"
-              : "rgba(255,255,255,0.1)",
-          }}
-        />
-
-        {/* Body + CTA row */}
-        <div
-          style={{
+            background: bg,
+            clipPath: card.clip,
+            padding: "36px 36px 32px",
+            position: "relative",
+            minHeight: card.hasWafer ? 300 : 260,
             display: "flex",
+            flexDirection: "column",
             justifyContent: "space-between",
-            alignItems: "flex-end",
             gap: 16,
+            boxShadow: card.white
+              ? "0 20px 60px rgba(0,0,0,0.45)"
+              : "0 20px 60px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.06)",
           }}
         >
-          <p
+          {/* Big number watermark */}
+          <span
             style={{
-              fontSize: 13,
-              lineHeight: 1.65,
-              color: bodyColor,
-              margin: 0,
-              flex: 1,
+              position: "absolute",
+              top: 12,
+              right: 20,
+              fontSize: 80,
+              fontWeight: 900,
               fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+              color: numColor,
+              lineHeight: 1,
+              userSelect: "none",
+              letterSpacing: "-0.05em",
             }}
           >
-            {card.body}
-          </p>
+            {card.num}
+          </span>
 
-          {card.cta ? (
-            <button
+          {/* Corner accent */}
+          <div
+            style={{
+              position: "absolute",
+              top: 16,
+              left: 16,
+              width: 18,
+              height: 18,
+              borderLeft: card.white
+                ? "2px solid rgba(0,0,0,0.25)"
+                : "2px solid rgba(255,255,255,0.3)",
+              borderTop: card.white
+                ? "2px solid rgba(0,0,0,0.25)"
+                : "2px solid rgba(255,255,255,0.3)",
+            }}
+          />
+
+          {/* Title + subtitle */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 4, paddingTop: 8 }}>
+            <h3
               style={{
-                flexShrink: 0,
-                width: 44,
-                height: 44,
-                borderRadius: "50%",
-                background: "#ffffff",
-                border: "none",
-                boxShadow: "0 0 22px rgba(255,255,255,0.7)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                cursor: "pointer",
-                fontSize: 24,
-                color: "black",
-                fontWeight: "bold",
-                lineHeight: 1,
+                fontFamily:
+                  '"Helvetica Neue", "HelveticaNeueCyr Medium", Helvetica, Arial, sans-serif',
+                fontSize: "clamp(22px, 2.5vw, 32px)",
+                fontWeight: 700,
+                color: titleColor,
+                textTransform: "uppercase",
+                letterSpacing: "-0.03em",
+                lineHeight: 1.05,
+                margin: 0,
+                whiteSpace: "pre-line",
               }}
             >
-              +
-            </button>
-          ) : (
-            <div
+              {card.title}
+            </h3>
+            <p
               style={{
-                flexShrink: 0,
-                width: 36,
-                height: 36,
-                borderRadius: "50%",
-                border: card.white
-                  ? "1.5px solid rgba(0,0,0,0.2)"
-                  : "1.5px solid rgba(255,255,255,0.2)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
+                fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+                fontSize: 10,
+                fontWeight: 600,
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                color: subtitleColor,
+                margin: 0,
               }}
             >
-              <span
-                style={{
-                  color: card.white ? "#0d0d0d" : "white",
-                  fontSize: 14,
-                  opacity: 0.6,
-                }}
-              >
-                →
-              </span>
+              {card.subtitle}
+            </p>
+          </div>
+
+          {/* Silicon Wafer visual for card 03 */}
+          {card.hasWafer && (
+            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+              <div style={{ position: "relative", width: 72, height: 72, borderRadius: "50%", overflow: "hidden", flexShrink: 0 }}>
+                <Image
+                  src="/silicon-wafer.png"
+                  alt="Silicon Wafer"
+                  fill
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+                <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)" }}>
+                  Silicon Wafer
+                </span>
+                <span style={{ fontSize: 9, fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(255,255,255,0.2)" }}>
+                  Semiconductor Innovation
+                </span>
+              </div>
             </div>
           )}
+
+          {/* Divider */}
+          <div
+            style={{
+              height: 1,
+              background: card.white
+                ? "rgba(0,0,0,0.12)"
+                : "rgba(255,255,255,0.1)",
+            }}
+          />
+
+          {/* Body + CTA row */}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "flex-end",
+              gap: 16,
+            }}
+          >
+            <p
+              style={{
+                fontSize: 13,
+                lineHeight: 1.65,
+                color: bodyColor,
+                margin: 0,
+                flex: 1,
+                fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+              }}
+            >
+              {card.body}
+            </p>
+
+            {card.cta ? (
+              <button
+                style={{
+                  flexShrink: 0,
+                  width: 44,
+                  height: 44,
+                  borderRadius: "50%",
+                  background: "#ffffff",
+                  border: "none",
+                  boxShadow: "0 0 22px rgba(255,255,255,0.7)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  cursor: "pointer",
+                  fontSize: 24,
+                  color: "black",
+                  fontWeight: "bold",
+                  lineHeight: 1,
+                }}
+              >
+                +
+              </button>
+            ) : (
+              <div
+                style={{
+                  flexShrink: 0,
+                  width: 36,
+                  height: 36,
+                  borderRadius: "50%",
+                  border: card.white
+                    ? "1.5px solid rgba(0,0,0,0.2)"
+                    : "1.5px solid rgba(255,255,255,0.2)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <span
+                  style={{
+                    color: card.white ? "#0d0d0d" : "white",
+                    fontSize: 14,
+                    opacity: 0.6,
+                  }}
+                >
+                  →
+                </span>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
-    </motion.div>
+      </motion.div>
     </>
   );
 }
@@ -375,9 +378,9 @@ function SectionLabel({ progress }: { progress: MotionValue<number> }) {
   return (
     <motion.div
       style={{ opacity }}
-      className="absolute top-10 left-10 z-20"
+      className="absolute top-12 left-12 z-20"
     >
-      <div style={{ position: "relative", padding: "14px 18px" }}>
+      <div style={{ position: "relative", padding: "18px 24px" }}>
         {[
           { top: 0, left: 0, borderLeft: true, borderTop: true },
           { top: 0, right: 0, borderRight: true, borderTop: true },
@@ -390,23 +393,10 @@ function SectionLabel({ progress }: { progress: MotionValue<number> }) {
               position: "absolute",
               width: 14,
               height: 14,
-              ...Object.fromEntries(
-                Object.entries(corner)
-                  .filter(([k]) => ["top", "left", "right", "bottom"].includes(k))
-                  .map(([k, v]) => [k, v === 0 ? 0 : undefined])
-              ),
-              ...(corner.borderLeft
-                ? { borderLeft: "1.5px solid rgba(255,255,255,0.55)" }
-                : {}),
-              ...(corner.borderRight
-                ? { borderRight: "1.5px solid rgba(255,255,255,0.55)" }
-                : {}),
-              ...(corner.borderTop
-                ? { borderTop: "1.5px solid rgba(255,255,255,0.55)" }
-                : {}),
-              ...(corner.borderBottom
-                ? { borderBottom: "1.5px solid rgba(255,255,255,0.55)" }
-                : {}),
+              borderLeft: corner.borderLeft ? "1.5px solid rgba(255,255,255,0.55)" : undefined,
+              borderRight: corner.borderRight ? "1.5px solid rgba(255,255,255,0.55)" : undefined,
+              borderTop: corner.borderTop ? "1.5px solid rgba(255,255,255,0.55)" : undefined,
+              borderBottom: corner.borderBottom ? "1.5px solid rgba(255,255,255,0.55)" : undefined,
               top: corner.top === 0 ? 0 : undefined,
               left: corner.left === 0 ? 0 : undefined,
               right: corner.right === 0 ? 0 : undefined,
@@ -419,18 +409,21 @@ function SectionLabel({ progress }: { progress: MotionValue<number> }) {
             color: "white",
             fontFamily:
               '"Helvetica Neue", "HelveticaNeueCyr Medium", sans-serif',
-            fontSize: 10,
-            fontWeight: 600,
+            fontSize: 13,
+            fontWeight: 700,
             textTransform: "uppercase",
-            letterSpacing: "0.25em",
-            lineHeight: 1.6,
+            letterSpacing: "0.3em",
+            lineHeight: 1.5,
             margin: 0,
             textAlign: "center",
+            whiteSpace: "nowrap"
           }}
         >
           FUTURE SCHOOLS
           <br />
-          DEEP TECH ECOSYSTEM
+          <span style={{ color: "rgba(255,255,255,0.5)", fontSize: 11, letterSpacing: "0.25em" }}>
+            DEEP TECH ECOSYSTEM
+          </span>
         </p>
       </div>
     </motion.div>
@@ -479,7 +472,7 @@ function CardIndicator({ progress }: { progress: MotionValue<number> }) {
   );
 }
 
-// ─── Main ─────────────────────────────────────────────────────────────────────
+// ─── Main Component ───────────────────────────────────────────────────────────
 export default function BATarget() {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -497,9 +490,7 @@ export default function BATarget() {
       className="relative w-full"
       style={{ height: "500vh", background: "#000" }}
     >
-      {/* ══════════════════════════════════════════════════
-          STICKY VIEWPORT
-         ══════════════════════════════════════════════════ */}
+      {/* sticky viewport */}
       <div className="sticky top-0 w-full h-screen overflow-hidden">
 
         {/* Background */}
@@ -511,7 +502,7 @@ export default function BATarget() {
           }}
         />
 
-        {/* ── Center dividing line ── */}
+        {/* Center dividing line */}
         <div
           className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 z-10"
           style={{
@@ -521,10 +512,10 @@ export default function BATarget() {
           }}
         />
 
-        {/* ── Section label top-left ── */}
+        {/* Section label top-left */}
         <SectionLabel progress={scrollYProgress} />
 
-        {/* ── Heading top-center ── */}
+        {/* Heading top-center */}
         <motion.div
           style={{
             opacity: useTransform(scrollYProgress, [0, 0.08, 0.92, 1.0], [0, 1, 1, 0]),
@@ -546,7 +537,7 @@ export default function BATarget() {
           </p>
         </motion.div>
 
-        {/* ── Cyan tracking dot on center line ── */}
+        {/* Cyan tracking dot on center line */}
         <motion.div
           style={{ top: dotY }}
           className="absolute left-1/2 -translate-x-1/2 z-30"
@@ -562,7 +553,7 @@ export default function BATarget() {
           />
         </motion.div>
 
-        {/* ── Cards ── */}
+        {/* Cards mapping */}
         {CARDS.map((card, i) => (
           <AnimatedCard
             key={card.id}
@@ -572,7 +563,7 @@ export default function BATarget() {
           />
         ))}
 
-        {/* ── Card step indicator ── */}
+        {/* Card step indicator */}
         <CardIndicator progress={scrollYProgress} />
 
       </div>

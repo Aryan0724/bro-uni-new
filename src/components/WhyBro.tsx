@@ -97,37 +97,34 @@ function AnimatedCard({ card }: { card: typeof cards[0] }) {
 
 export default function WhyBro() {
   return (
-    <section id="why-bro" className="w-full py-32 px-6 bg-black border-t border-white/5 overflow-hidden">
-      <div className="max-w-7xl mx-auto flex flex-col gap-20">
+    <section id="why-bro" className="w-full mt-32 pt-32 pb-24 px-6 bg-black border-t border-white/5 overflow-hidden">
+      <div className="max-w-7xl mx-auto flex flex-col gap-16">
 
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-10%" }}
+          viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="flex flex-col md:flex-row gap-8 md:gap-20 items-start"
+          className="w-full flex flex-col items-center justify-center text-center mx-auto mb-20"
         >
-          <div className="flex-1">
-            <span className="text-[10px] font-body tracking-[0.25em] text-white/30 uppercase mb-4 block">/ Why BRO University</span>
-            <h2 className="font-display font-bold text-5xl md:text-7xl text-white leading-[1.05] tracking-tight uppercase">
-              BUILT FOR<br /><span className="text-white/30">FUTURE</span><br />LEADERS.
-            </h2>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/[0.02]">
+            <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />
+            <span className="text-[10px] font-body tracking-[0.25em] text-white/50 uppercase">
+              OUR PILLARS
+            </span>
           </div>
-          <div className="flex-1 max-w-md pt-2">
-            <p className="font-body text-white/45 text-[15px] leading-relaxed mt-8 md:mt-16">
-              Four pillars that separate BRO University from every traditional institution on the planet. We don&apos;t teach history — we build the future.
-            </p>
-            {/* Subtle circuit trace decoration */}
-            <div className="mt-8 flex items-center gap-2 text-white/15">
-              <div className="w-2 h-2 rounded-full border border-white/20" />
-              <div className="h-[1px] w-12 bg-white/10" />
-              <div className="w-1.5 h-1.5 rounded-full bg-white/15" />
-              <div className="h-[1px] w-8 bg-white/10" />
-              <div className="w-2 h-2 rounded-full border border-white/20" />
-              <div className="h-[1px] flex-1 bg-white/5" />
-            </div>
-          </div>
+          
+          <h2 className="font-display font-black text-4xl sm:text-5xl md:text-6xl text-white leading-tight tracking-tight uppercase">
+            WHY BRO UNIVERSITY
+          </h2>
+
+          <p className="font-body text-cyan-400 text-xs sm:text-sm tracking-[0.18em] uppercase font-semibold pb-2">
+            BUILT FOR FUTURE LEADERS
+          </p>
+          
+          <p className="font-body text-white/45 text-sm sm:text-base leading-relaxed max-w-xl">
+            Four pillars that separate BRO University from every traditional institution on the planet. We don&apos;t teach history — we build the future.
+          </p>
         </motion.div>
 
         {/* Cards Grid */}
