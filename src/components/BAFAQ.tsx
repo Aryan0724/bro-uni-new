@@ -32,19 +32,22 @@ const faqs = [
 
 export default function BAFAQ() {
   return (
-    <section id="faqs" className="pt-32 pb-[20vh] bg-black relative border-b border-white/5 overflow-visible">
+    <section id="faqs" className="pt-[150px] pb-[15vh] bg-black relative border-b border-white/5 overflow-visible">
       <div className="max-w-5xl mx-auto px-4 md:px-0">
         
+        {/* Heading Section: Text chota kiya hai */}
         <div className="text-center mb-24">
-          <span className="text-[10px] font-body tracking-[0.25em] text-white/30 uppercase block mb-5">/ Frequently Asked</span>
-          <h2 className="font-display font-bold text-5xl md:text-7xl text-white leading-[1.05] tracking-tight uppercase">
-            QUESTIONS <span className="text-white/25">ANSWERED.</span>
+          <h2 className="font-display font-bold text-3xl md:text-5xl text-white tracking-tight uppercase mb-4">
+            Frequently Asked
+          </h2>
+          <h2 className="font-display font-bold text-3xl md:text-5xl text-white tracking-tight uppercase">
+            Questions Answered
           </h2>
         </div>
 
-        <div className="flex flex-col relative z-10 pb-[20vh]">
+        <div className="flex flex-col relative z-10 pb-[10vh]">
           {faqs.map((faq, idx) => {
-            const offset = 200 + idx * 10;
+            const offset = 150 + idx * 10;
 
             return (
               <motion.div
@@ -57,32 +60,33 @@ export default function BAFAQ() {
                 style={{ top: `${offset}px` }}
               >
                 <div 
-                  className="bg-[#080808] border border-white/6 rounded-[2.5rem] w-full p-10 md:p-16 mb-[50vh] min-h-[45vh] flex flex-col justify-center relative overflow-hidden"
+                  className="bg-[#080808] border border-white/6 rounded-[2rem] w-full p-8 md:p-12 mb-[40vh] min-h-[35vh] flex flex-col justify-center relative overflow-hidden"
                   style={{ transform: "translateZ(0)" }}
                 >
-                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(255,255,255,0.04)_0%,transparent_60%)] pointer-events-none" />
-                  <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/12 to-transparent" />
-
+                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(255,255,255,0.03)_0%,transparent_60%)] pointer-events-none" />
+                  
                   <div 
-                    className="absolute -right-8 -bottom-16 text-[280px] font-accent font-black text-transparent pointer-events-none select-none leading-none"
-                    style={{ WebkitTextStroke: "1.5px rgba(255,255,255,0.025)" }}
+                    className="absolute -right-4 -bottom-10 text-[200px] font-accent font-black text-transparent pointer-events-none select-none leading-none"
+                    style={{ WebkitTextStroke: "1px rgba(255,255,255,0.02)" }}
                   >
                     {faq.id}
                   </div>
 
-                  <div className="relative z-10 flex flex-col md:flex-row gap-8 md:gap-16 items-start">
-                    <div className="shrink-0 pt-2">
-                      <span className="font-accent text-white/20 text-2xl md:text-3xl font-bold tracking-widest">
+                  <div className="relative z-10 flex flex-col md:flex-row gap-6 items-start">
+                    <div className="shrink-0 pt-1">
+                      <span className="font-accent text-white/20 text-xl font-bold tracking-widest">
                         {faq.id}
                       </span>
                     </div>
                     
-                    <div className="flex flex-col gap-6">
-                      <h3 className="font-display font-bold text-2xl md:text-4xl text-white tracking-tight leading-[1.15]">
+                    <div className="flex flex-col gap-4">
+                      {/* Question size chota kiya */}
+                      <h3 className="font-display font-bold text-xl md:text-3xl text-white tracking-tight leading-[1.2]">
                         {faq.question}
                       </h3>
-                      <div className="w-10 h-[1.5px] bg-white/15" />
-                      <p className="font-body text-lg md:text-xl text-white/35 leading-relaxed max-w-3xl">
+                      <div className="w-8 h-[1px] bg-white/20" />
+                      {/* Answer size chota kiya */}
+                      <p className="font-body text-base md:text-lg text-white/50 leading-relaxed max-w-2xl">
                         {faq.answer}
                       </p>
                     </div>
