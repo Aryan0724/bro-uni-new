@@ -105,13 +105,6 @@ export default function BAHero() {
               animate="visible"
               className="flex flex-col"
             >
-              {/* Small Badge / Pre-heading */}
-              <motion.div variants={itemVariant} className="mb-6 inline-flex items-center">
-                <div className="px-4 py-1.5 rounded-full border border-black/10 bg-black/5 text-[11px] font-bold tracking-widest uppercase text-black/70">
-                  Race Up Your Brain
-                </div>
-              </motion.div>
-
               {/* Massive, tight heading */}
               <motion.div 
                 variants={itemVariant} 

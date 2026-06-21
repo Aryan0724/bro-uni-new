@@ -40,7 +40,7 @@ export default function Join() {
               HEY BRO is a future innovation community for students, researchers, creators, and dreamers who want to shape the future of humanity through technology.
             </p>
             <div className="flex flex-col gap-6">
-              {["Join the movement.", "Build the future.", "Race Up Your Brain."].map((line, i) => (
+              {["Join the movement.", "Build the future."].map((line, i) => (
                 <div key={i} className="flex items-center gap-6">
                   <div className="w-8 h-[2px] bg-white/20"></div>
                   <span className="font-display font-medium text-xl md:text-3xl text-white uppercase">{line}</span>
