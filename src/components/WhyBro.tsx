@@ -140,8 +140,6 @@ export default function WhyBro() {
     offset: ["start start", "end end"]
   });
 
-  const progressHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
-
   return (
     <section 
       id="why-bro" 

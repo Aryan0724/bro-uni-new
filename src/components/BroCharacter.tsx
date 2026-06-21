@@ -21,7 +21,6 @@ export function BroCharacter({ progress, hoveredCard }: { progress: MotionValue<
   const { actions } = useAnimations(animations, group);
 
   const [currentAction, setCurrentAction] = useState<string>("Idle");
-  const [hovered, setHovered] = useState(false);
   const [clicked, setClicked] = useState(false);
 
   const [previousAction, setPreviousAction] = useState<string>("Idle");
@@ -120,8 +119,6 @@ export function BroCharacter({ progress, hoveredCard }: { progress: MotionValue<
       ref={group}
       dispose={null}
       position={[0, -1.2, 0]}
-      onPointerOver={(e) => { e.stopPropagation(); setHovered(true); }}
-      onPointerOut={(e) => { e.stopPropagation(); setHovered(false); }}
       onClick={(e) => {
         e.stopPropagation();
         if (!clicked) {

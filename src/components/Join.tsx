@@ -106,12 +106,12 @@ export default function Join() {
               </motion.div>
             ) : (
               <div className="flex flex-col items-center lg:items-start justify-center py-12 text-center lg:text-left">
-                <div className="w-24 h-24 rounded-full border-4 border-blue-600 flex items-center justify-center mb-8">
+                <div className="w-24 h-24 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-500 rounded-full flex items-center justify-center mb-12 shadow-[0_0_80px_rgba(168,85,247,0.4)]">
                   <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="text-white">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
                 </div>
-                <h3 className="font-display font-black text-5xl md:text-7xl text-white uppercase tracking-tighter">You're In.</h3>
+                <h3 className="font-display font-black text-5xl md:text-7xl text-white uppercase tracking-tighter">You&apos;re In.</h3>
                 <p className="font-body text-xl text-white/50 mt-6">Welcome to the movement.</p>
               </div>
             )}

@@ -119,7 +119,7 @@ export default function BAHero() {
                 variants={itemVariant} 
                 className="text-[16px] md:text-[18px] font-body text-black/80 leading-[1.6] font-medium max-w-[480px]"
               >
-                BRO University is the world's first university where <br className="hidden md:block"/> AI, Neuroscience and Semiconductors come <br className="hidden md:block"/> together to solve humanity's biggest challenges.
+                BRO University is the world&apos;s first university where <br className="hidden md:block"/> AI, Neuroscience and Semiconductors come <br className="hidden md:block"/> together to solve humanity&apos;s biggest challenges.
               </motion.p>
               
               {/* Spacer */}
