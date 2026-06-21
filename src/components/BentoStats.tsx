@@ -2,9 +2,9 @@
 
 import React, { useRef } from 'react';
 import Image from 'next/image';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, Variants } from 'framer-motion';
 
-const cardVariant = {
+const cardVariant: Variants = {
   hidden: { opacity: 0, y: 50, scale: 0.85, rotateY: 15 },
   visible: (i: number) => ({
     opacity: 1,
@@ -14,7 +14,7 @@ const cardVariant = {
     transition: {
       duration: 0.9,
       delay: i * 0.12,
-      ease: [0.16, 1, 0.3, 1],
+      ease: [0.16, 1, 0.3, 1] as const,
     },
   }),
 };
