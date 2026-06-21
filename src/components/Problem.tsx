@@ -236,7 +236,7 @@ export default function Problem() {
   const targetX = useMotionValue(0);
   const targetY = useMotionValue(0);
 
-  const sentence = "Traditional institutions teach the history of technology. We are building the ecosystem that will create its future.";
+  const sentence = "Education for the Next 50 Years. BRO UNIVERSITY is being built to bridge the gap between education, research, startups, and real-world innovation.";
   const words = sentence.split(" ");
   let globalLetterTracker = 0;
   const totalLetters = sentence.length;
@@ -305,9 +305,12 @@ export default function Problem() {
             style={{ opacity: resolutionOpacity, y: resolutionY }} 
             className="absolute inset-0 flex items-center justify-center p-6"
           >
-            <h2 className="heading-massive text-[5vw] md:text-[4vw] lg:text-[56px] leading-[1.1] text-white text-center max-w-4xl">
-              A research-driven ecosystem where students become{" "}
-              <span style={{ color: "white" }}>creators</span>.
+            <h2 className="heading-massive text-[4vw] md:text-[3vw] lg:text-[48px] leading-[1.1] text-white text-center max-w-5xl">
+              We are creating an ecosystem where students work on:
+              <span style={{ color: "rgba(255,255,255,0.5)", display: "block", fontSize: "0.55em", marginTop: "24px", lineHeight: "1.6" }}>
+                AI & Machine Learning • Neuroscience & Brain Technology • Semiconductor & Chip Design<br/>
+                Neuroinformatics • Robotics & Future Computing • Deep Tech Startups
+              </span>
             </h2>
           </motion.div>
 

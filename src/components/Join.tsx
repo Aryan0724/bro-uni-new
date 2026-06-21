@@ -37,7 +37,7 @@ export default function Join() {
               More than a university.<br />A movement.
             </h3>
             <p className="font-body text-xl md:text-2xl text-white/50 leading-relaxed max-w-xl mb-16">
-              HEY BRO is a future innovation community for students, researchers, creators, and dreamers who want to shape the future of humanity through deep technology.
+              HEY BRO is a future innovation community for students, researchers, creators, and dreamers who want to shape the future of humanity through technology.
             </p>
             <div className="flex flex-col gap-6">
               {["Join the movement.", "Build the future.", "Race Up Your Brain."].map((line, i) => (
@@ -93,7 +93,7 @@ export default function Join() {
                       style={{ minHeight: '80px', padding: '0 48px' }}
                     >
                       <span className="relative z-10 transition-colors duration-300 group-hover:text-white flex items-center justify-center gap-4 w-full h-full">
-                        JOIN EARLY ACCESS
+                        JOIN HEY BRO
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="transition-transform duration-300 group-hover:translate-x-2 shrink-0">
                           <line x1="5" y1="12" x2="19" y2="12"></line>
                           <polyline points="12 5 19 12 12 19"></polyline>

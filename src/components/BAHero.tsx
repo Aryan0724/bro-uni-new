@@ -59,9 +59,15 @@ export default function BAHero() {
         <div className="absolute top-6 left-0 w-full z-50 px-6 md:px-[64px] flex justify-center">
           <nav className="w-full max-w-[1600px] flex items-center justify-between py-4 px-8 rounded-full bg-white/70 backdrop-blur-xl border border-white/50 shadow-[0_8px_32px_rgba(0,0,0,0.08)]">
             <div className="flex-1 flex items-center">
-              <h1 className="font-display font-semibold text-3xl lg:text-[32px] tracking-wide uppercase flex items-center gap-5">
-                BRO <span className="font-body font-medium text-[10px] tracking-[0.4em] text-gray-500 mt-1">UNIVERSITY</span>
-              </h1>
+              <a href="#home" className="relative flex items-center h-10 w-32 md:w-40">
+                <Image 
+                  src="/bro-logo.png"
+                  alt="BRO University Logo"
+                  fill
+                  className="object-contain object-left"
+                  priority
+                />
+              </a>
             </div>
             
             <div className="hidden lg:flex flex-1 justify-center items-center gap-10 text-[11px] font-bold tracking-[0.15em] uppercase text-gray-900">
@@ -99,15 +105,22 @@ export default function BAHero() {
               animate="visible"
               className="flex flex-col"
             >
+              {/* Small Badge / Pre-heading */}
+              <motion.div variants={itemVariant} className="mb-6 inline-flex items-center">
+                <div className="px-4 py-1.5 rounded-full border border-black/10 bg-black/5 text-[11px] font-bold tracking-widest uppercase text-black/70">
+                  Race Up Your Brain
+                </div>
+              </motion.div>
+
               {/* Massive, tight heading */}
               <motion.div 
                 variants={itemVariant} 
-                className="text-[clamp(5rem,7.5vw,8.5rem)] font-display font-medium leading-[0.8] tracking-[-0.05em] text-[#111] max-w-[850px] flex flex-col"
+                className="text-[clamp(4.5rem,6.5vw,7.5rem)] font-display font-medium leading-[0.85] tracking-[-0.04em] text-[#111] max-w-[950px] flex flex-col"
               >
-                <span>BUILDING</span>
-                <span>THE FUTURE.</span>
+                <span>HEY BRO,</span>
+                <span>READY TO BUILD</span>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3B82F6] via-[#A855F7] to-[#EC4899] pr-4">
-                  AT THE CORE.
+                  THE FUTURE?
                 </span>
               </motion.div>
 
@@ -115,12 +128,17 @@ export default function BAHero() {
               <div className="h-[40px] w-full" />
 
               {/* Description */}
-              <motion.p 
+              <motion.div 
                 variants={itemVariant} 
-                className="text-[16px] md:text-[18px] font-body text-black/80 leading-[1.6] font-medium max-w-[480px]"
+                className="flex flex-col gap-4 text-[16px] md:text-[18px] font-body text-black/80 leading-[1.6] font-medium max-w-[550px]"
               >
-                BRO University is the world&apos;s first university where <br className="hidden md:block"/> AI, Neuroscience and Semiconductors come <br className="hidden md:block"/> together to solve humanity&apos;s biggest challenges.
-              </motion.p>
+                <p>
+                  India&apos;s next-generation deep tech university focused on Artificial Intelligence, Neuroscience, Semiconductors, Nanotechnology, and Future Innovation.
+                </p>
+                <p>
+                  <strong className="text-black">Not another traditional university.</strong> A research-driven ecosystem where students become innovators, scientists, founders, and creators of future technologies.
+                </p>
+              </motion.div>
               
               {/* Spacer */}
               <div className="h-[40px] w-full" />
@@ -128,24 +146,25 @@ export default function BAHero() {
               {/* CTAs */}
               <motion.div variants={itemVariant} className="flex flex-col sm:flex-row items-start">
                 <a 
-                  href="#explore" 
+                  href="#admissions" 
                   className="group relative inline-flex items-center bg-[#0A0A0A] text-white rounded-full transition-all duration-500 hover:shadow-[0_0_30px_rgba(168,85,247,0.3)] hover:-translate-y-1"
                   style={{ height: '56px', paddingLeft: '36px', paddingRight: '8px', gap: '28px' }}
                 >
-                  {/* Subtle border gradient */}
-                  <div className="absolute inset-0 rounded-full border-[1px] border-white/10 group-hover:border-transparent transition-colors duration-500 pointer-events-none"></div>
-
-                  {/* Gradient Background that fades in */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#3B82F6]/20 via-[#A855F7]/20 to-[#EC4899]/20 opacity-0 transition-opacity duration-500 group-hover:opacity-100 blur-md pointer-events-none"></div>
-
-                  <span className="relative z-10 text-[12px] font-bold tracking-[0.25em] uppercase leading-none">
-                    EXPLORE BRO
+                  <span className="font-bold tracking-[0.2em] text-[12px] uppercase">
+                    JOIN EARLY ACCESS
                   </span>
                   
                   {/* Circular Arrow Icon Container */}
                   <div className="relative z-10 bg-white rounded-full flex items-center justify-center text-black shrink-0 transition-all duration-500 group-hover:scale-105" style={{ width: '40px', height: '40px' }}>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-500 group-hover:translate-x-1"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                   </div>
+                </a>
+
+                <a 
+                  href="#about" 
+                  className="inline-flex items-center justify-center text-[12px] font-bold tracking-[0.2em] uppercase transition-all duration-300 hover:opacity-70 mt-6 sm:mt-0 sm:ml-8 h-[56px]"
+                >
+                  EXPLORE VISION
                 </a>
               </motion.div>
 

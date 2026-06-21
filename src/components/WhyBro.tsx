@@ -6,23 +6,23 @@ import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
 const cards = [
   {
     id: "01",
-    title: "RESEARCH FROM DAY ONE",
-    desc: "Students won't just study technology — they will build it. Every program is anchored to active research projects, real labs, and published innovation.",
+    title: "BUILT FOR FUTURE LEADERS",
+    desc: "Students won't just study technology — they will build it.",
   },
   {
     id: "02",
     title: "FUTURE-FOCUSED PROGRAMS",
-    desc: "Designed around industries that will dominate the world economy for the next 50 years — AI, Neuroscience, Semiconductors, and Nanotechnology.",
+    desc: "Designed around industries that will dominate the world economy.",
   },
   {
     id: "03",
     title: "INNOVATION ECOSYSTEM",
-    desc: "Labs, startups, patents, research publications, and global collaboration — all under one roof. Students graduate as creators, not just degree holders.",
+    desc: "Labs, startups, patents, research, and global collaboration.",
   },
   {
     id: "04",
     title: "INVESTOR-READY VISION",
-    desc: "A scalable deep-tech education ecosystem with global potential. Built for the next generation of scientists, founders, and technology leaders.",
+    desc: "A scalable deep-tech education ecosystem with global potential.",
   },
 ];
 

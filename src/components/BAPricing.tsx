@@ -103,27 +103,42 @@ export default function BAPricing() {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-[800px] bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-pink-500/20 blur-3xl rounded-full pointer-events-none"></div>
           
           <div className="flex flex-col lg:flex-row justify-between items-center gap-16 relative z-10 w-full">
-            <div className="flex-1 min-w-0 w-full flex justify-center lg:justify-start">
-              <h4 className="font-display text-4xl md:text-5xl lg:text-6xl font-black text-white uppercase tracking-tighter leading-tight text-center lg:text-left max-w-2xl">
-                Partner with the institution defining the next era.
+            <div className="flex-1 min-w-0 w-full flex flex-col justify-center lg:justify-start gap-6">
+              <h4 className="font-display text-4xl md:text-5xl lg:text-6xl font-black text-white uppercase tracking-tighter leading-tight text-center lg:text-left">
+                The Future Will Belong to Innovators
               </h4>
+              <p className="font-body text-white/60 text-lg md:text-xl text-center lg:text-left max-w-xl">
+                BRO UNIVERSITY is building a next-generation ecosystem where education meets intelligence, research, and future technology.<br/><br/>
+                <span className="text-white font-bold tracking-widest uppercase text-sm">HEY BRO, THE FUTURE STARTS HERE.</span>
+              </p>
             </div>
             
-            <div className="relative group shrink-0 w-full md:w-auto">
-              <div className="absolute -inset-2 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 blur-xl opacity-0 group-hover:opacity-70 transition-opacity duration-500"></div>
-              
+            <div className="flex flex-col gap-6 shrink-0 w-full md:w-auto">
+              {/* Primary CTA */}
+              <div className="relative group w-full">
+                <div className="absolute -inset-2 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 blur-xl opacity-0 group-hover:opacity-70 transition-opacity duration-500"></div>
+                
+                <button 
+                  className="relative overflow-hidden w-full flex items-center justify-center bg-white text-black font-bold tracking-[0.2em] uppercase text-sm md:text-base leading-none border border-transparent hover:border-white transition-colors duration-300 rounded-full gap-4"
+                  style={{ minHeight: '80px', padding: '0 48px' }}
+                >
+                  <span className="relative z-10 transition-colors duration-300 group-hover:text-white flex items-center justify-center gap-4 w-full h-full">
+                    BECOME AN EARLY SUPPORTER
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="transition-transform duration-300 group-hover:translate-x-2 shrink-0">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 translate-y-[101%] group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.87,0,0.13,1)]"></div>
+                </button>
+              </div>
+
+              {/* Secondary CTA */}
               <button 
-                className="relative overflow-hidden w-full md:w-auto flex items-center justify-center bg-white text-black font-bold tracking-[0.2em] uppercase text-sm md:text-base leading-none border border-transparent hover:border-white transition-colors duration-300 rounded-full gap-4"
+                className="w-full flex items-center justify-center bg-transparent text-white font-bold tracking-[0.2em] uppercase text-sm border border-white/20 hover:border-white transition-colors duration-300 rounded-full gap-4"
                 style={{ minHeight: '80px', padding: '0 48px' }}
               >
-                <span className="relative z-10 transition-colors duration-300 group-hover:text-white flex items-center justify-center gap-4 w-full h-full">
-                  PARTNER WITH US
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="transition-transform duration-300 group-hover:translate-x-2 shrink-0">
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                    <polyline points="12 5 19 12 12 19"></polyline>
-                  </svg>
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 translate-y-[101%] group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.87,0,0.13,1)]"></div>
+                PARTNER WITH US
               </button>
             </div>
           </div>
