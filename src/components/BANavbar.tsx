@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -19,6 +19,15 @@ const NAV_LINKS = [
 
 export default function BANavbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showNav, setShowNav] = useState(false);
+  
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowNav(window.scrollY > window.innerHeight * 0.8);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleNavClick = (href: string) => {
     setMenuOpen(false);
@@ -36,7 +45,14 @@ export default function BANavbar() {
 
   return (
     <>
-      <div className="fixed top-8 right-8 z-[999]">
+      <AnimatePresence>
+        {showNav && (
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="fixed top-8 right-8 z-[999]"
+          >
         <button
           onClick={() => setMenuOpen(true)}
           className="bg-white text-black cursor-pointer hover:bg-gray-100 transition-colors shadow-sm"
@@ -56,7 +72,9 @@ export default function BANavbar() {
             ))}
           </div>
         </button>
-      </div>
+      </motion.div>
+        )}
+      </AnimatePresence>
 
       <AnimatePresence>
         {menuOpen && (

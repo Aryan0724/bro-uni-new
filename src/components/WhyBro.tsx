@@ -1,139 +1,192 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
 
 const cards = [
-  { 
+  {
     id: "01",
-    title: "Research From Day One", 
+    title: "RESEARCH FROM DAY ONE",
     desc: "Students won't just study technology — they will build it. Every program is anchored to active research projects, real labs, and published innovation.",
-    tag: "Core Principle",
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.35 }}>
-        <circle cx="11" cy="11" r="8"/>
-        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-        <line x1="11" y1="8" x2="11" y2="14"/>
-        <line x1="8" y1="11" x2="14" y2="11"/>
-      </svg>
-    )
   },
-  { 
+  {
     id: "02",
-    title: "Future-Focused Programs", 
+    title: "FUTURE-FOCUSED PROGRAMS",
     desc: "Designed around industries that will dominate the world economy for the next 50 years — AI, Neuroscience, Semiconductors, and Nanotechnology.",
-    tag: "Ecosystem",
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.35 }}>
-        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-      </svg>
-    )
   },
-  { 
+  {
     id: "03",
-    title: "Innovation Ecosystem", 
+    title: "INNOVATION ECOSYSTEM",
     desc: "Labs, startups, patents, research publications, and global collaboration — all under one roof. Students graduate as creators, not just degree holders.",
-    tag: "Infrastructure",
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.35 }}>
-        <circle cx="12" cy="12" r="2"/>
-        <path d="M4.93 4.93l4.24 4.24"/>
-        <path d="M14.83 14.83l4.24 4.24"/>
-        <path d="M4.93 19.07l4.24-4.24"/>
-        <path d="M14.83 9.17l4.24-4.24"/>
-      </svg>
-    )
   },
-  { 
+  {
     id: "04",
-    title: "Investor-Ready Vision", 
+    title: "INVESTOR-READY VISION",
     desc: "A scalable deep-tech education ecosystem with global potential. Built for the next generation of scientists, founders, and technology leaders.",
-    tag: "Scale",
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.35 }}>
-        <line x1="12" y1="20" x2="12" y2="10"/>
-        <line x1="18" y1="20" x2="18" y2="4"/>
-        <line x1="6" y1="20" x2="6" y2="16"/>
-      </svg>
-    )
   },
 ];
 
-function AnimatedCard({ card }: { card: typeof cards[0] }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["0 1", "1.2 1"],
-  });
+function StackedCard({ 
+  card, 
+  index, 
+  progress,
+  totalCards
+}: { 
+  card: typeof cards[0]; 
+  index: number; 
+  progress: MotionValue<number>;
+  totalCards: number;
+}) {
+  const start = index * 0.25;
+  const peakStart = start + 0.08; 
+  const peakEnd = start + 0.17;   
+  const end = start + 0.25;       
 
-  const y = useTransform(scrollYProgress, [0, 1], [80, 0]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 0.6, 1]);
+  const isFirst = index === 0;
+  const isLast = index === totalCards - 1;
+
+  const input = isFirst 
+    ? [0, peakEnd, end] 
+    : isLast 
+      ? [start - 0.08, peakStart, 1] 
+      : [start - 0.08, peakStart, peakEnd, end];
+
+  const opacityOutput = isFirst 
+    ? [1, 1, 0] 
+    : isLast 
+      ? [0, 1, 1] 
+      : [0, 1, 1, 0];
+
+  const scaleOutput = isFirst 
+    ? [1, 1, 0.8] 
+    : isLast 
+      ? [0.8, 1, 1] 
+      : [0.8, 1, 1, 0.8];
+
+  const yOutput = isFirst 
+    ? [0, 0, -800] 
+    : isLast 
+      ? [800, 0, 0] 
+      : [800, 0, 0, -800];
+
+  const filterOutput = isFirst
+    ? ["blur(0px)", "blur(0px)", "blur(20px)"]
+    : isLast 
+      ? ["blur(20px)", "blur(0px)", "blur(0px)"]
+      : ["blur(20px)", "blur(0px)", "blur(0px)", "blur(20px)"];
+
+  const opacity = useTransform(progress, input, opacityOutput);
+  const scale = useTransform(progress, input, scaleOutput);
+  const y = useTransform(progress, input, yOutput);
+  const filter = useTransform(progress, input, filterOutput);
+  
+  const isActive = useTransform(progress, (v) => v >= (start - 0.08) && v <= (isLast ? 1 : end));
 
   return (
-    <motion.div
-      ref={ref}
-      style={{ y, opacity }}
-      className="bg-[#0a0a0a] border border-white/7 rounded-2xl p-8 md:p-10 flex flex-col gap-6 hover:border-white/15 transition-colors duration-500 group"
+    <motion.div 
+      className="absolute inset-0 w-full h-full flex flex-col justify-center origin-left"
+      style={{ 
+        opacity, 
+        scale, 
+        y,
+        filter,
+        pointerEvents: isActive ? 'auto' : 'none',
+        zIndex: index * 10
+      }}
     >
-      <div className="flex items-start justify-between">
-        <span className="font-accent text-5xl font-black text-white/8 leading-none group-hover:text-white/12 transition-colors duration-500">{card.id}</span>
-        <div className="flex items-center gap-3">
-          <span className="text-white/30 group-hover:text-white/50 transition-colors duration-500">{card.icon}</span>
-          <span className="text-[10px] font-body tracking-[0.18em] uppercase text-white/25 border border-white/10 px-3 py-1 rounded-full">{card.tag}</span>
+      <div className="relative w-full flex flex-col justify-center">
+        
+        <div className="absolute -left-10 md:-left-20 top-1/2 -translate-y-1/2 text-[250px] md:text-[400px] font-display font-black leading-none text-black/[0.03] select-none pointer-events-none">
+          {card.id}
         </div>
-      </div>
-      <div className="flex flex-col gap-3">
-        <h3 className="font-display font-bold text-2xl md:text-3xl text-white leading-tight tracking-tight">
-          {card.title}
-        </h3>
-        <div className="w-8 h-[1.5px] bg-white/15 group-hover:bg-white/30 transition-colors duration-500" />
-        <p className="font-body text-white/45 text-[14px] leading-relaxed">
-          {card.desc}
-        </p>
+
+        <div className="relative z-10 flex flex-col gap-6 md:gap-10">
+          
+          <div className="flex flex-col gap-4">
+            <h3 
+              className="font-display font-black text-5xl md:text-7xl lg:text-[80px] uppercase leading-[0.9] tracking-tighter text-black"
+            >
+              {card.title}
+            </h3>
+            
+            <p className="font-body text-xl md:text-3xl text-black/60 max-w-xl leading-relaxed">
+              {card.desc}
+            </p>
+          </div>
+
+          <div className="mt-4 flex items-center gap-4 group cursor-pointer w-fit">
+            <div className="w-14 h-14 rounded-full flex items-center justify-center bg-black text-white transition-transform duration-300 group-hover:scale-110 shadow-lg">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </div>
+            <span className="text-sm font-bold tracking-[0.2em] uppercase text-black transition-colors duration-300 group-hover:text-purple-600">
+              Explore Pillar
+            </span>
+          </div>
+
+        </div>
       </div>
     </motion.div>
   );
 }
 
 export default function WhyBro() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
+
+  const progressHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
   return (
-    <section id="why-bro" className="w-full mt-32 pt-32 pb-24 px-6 bg-black border-t border-white/5 overflow-hidden">
-      <div className="max-w-7xl mx-auto flex flex-col gap-16">
+    <section 
+      id="why-bro" 
+      ref={containerRef}
+      className="w-full h-[400vh] bg-[#f8f9fa] border-t border-black/5 relative"
+    >
+      <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden">
+        <div className="max-w-[1500px] w-full mx-auto px-6 md:px-12 flex flex-col lg:flex-row relative z-10">
+          
+          <div className="w-full lg:w-5/12 lg:pr-16 xl:pr-24 relative z-20 flex flex-col justify-center mb-12 lg:mb-0">
+            <div className="flex flex-col items-start gap-8 pl-6 md:pl-12">
+              
+              <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-black/5 rounded-full overflow-hidden">
+                <motion.div 
+                  className="absolute top-0 left-0 w-full bg-gradient-to-b from-blue-600 via-purple-600 to-pink-500 rounded-full origin-top"
+                  style={{ scaleY: scrollYProgress }}
+                />
+              </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="w-full flex flex-col items-center justify-center text-center mx-auto mb-20"
-        >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/[0.02]">
-            <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />
-            <span className="text-[10px] font-body tracking-[0.25em] text-white/50 uppercase">
-              OUR PILLARS
-            </span>
+              <h2 className="font-display text-7xl md:text-8xl xl:text-[120px] font-black uppercase leading-[0.85] tracking-tighter text-black">
+                WHY<br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500">
+                  BRO.
+                </span>
+              </h2>
+
+              <p className="font-body text-black/60 text-lg md:text-xl xl:text-2xl max-w-sm leading-relaxed mt-2">
+                Four pillars that separate BRO University from every traditional institution on the planet. We don&apos;t teach history — we build the future.
+              </p>
+            </div>
           </div>
-          
-          <h2 className="font-display font-black text-4xl sm:text-5xl md:text-6xl text-white leading-tight tracking-tight uppercase">
-            WHY BRO UNIVERSITY
-          </h2>
 
-          <p className="font-body text-cyan-400 text-xs sm:text-sm tracking-[0.18em] uppercase font-semibold pb-2">
-            BUILT FOR FUTURE LEADERS
-          </p>
-          
-          <p className="font-body text-white/45 text-sm sm:text-base leading-relaxed max-w-xl">
-            Four pillars that separate BRO University from every traditional institution on the planet. We don&apos;t teach history — we build the future.
-          </p>
-        </motion.div>
+          <div className="w-full lg:w-7/12 relative h-[450px] md:h-[600px]">
+            {cards.map((card, i) => (
+              <StackedCard 
+                key={card.id} 
+                card={card} 
+                index={i} 
+                progress={scrollYProgress} 
+                totalCards={cards.length}
+              />
+            ))}
+          </div>
 
-        {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4" style={{ perspective: "1500px" }}>
-          {cards.map((card) => (
-            <AnimatedCard key={card.id} card={card} />
-          ))}
         </div>
-
       </div>
     </section>
   );
